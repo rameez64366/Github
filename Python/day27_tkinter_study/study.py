@@ -2,6 +2,7 @@ import tkinter
 def button_clicked():
     new_text = input.get()
     my_label.config(text=new_text)
+    print(new_text)
 
 windows=tkinter.Tk()
 windows.title("My first GUI code")
@@ -13,7 +14,6 @@ my_label=tkinter.Label(text="I am Rameez.",font=("Arial",24))
 my_label.grid(column=0,row=0)
 
 ###########   Button     ##################
-
 button=tkinter.Button(text="click me",command=button_clicked)
 button.grid(column=1,row=1)
 
@@ -22,6 +22,9 @@ button2.grid(column=2,row=0)
 ############## entry ##########
 input=tkinter.Entry()
 input.grid(column=3,row=2)
+p=input.get()
+print(p)
+
 
 #
 # new_entry=tkinter.Entry(width=30)

@@ -1,0 +1,29 @@
+try:
+	App.openDocument(f'C:/Users/Admin/Desktop/master thesis/FreeCAD/{name_document}.FCStd')
+except:
+	doc=App.newDocument(name_document)	
+	Gui.activeDocument().activeView().viewDefaultOrientation() 	
+else:
+	pass
+with open(r"C:\Users\Admin\PycharmProjects\Github\Python\Simulation\parameter.json") as data_file:
+	parameter_data=json.load(data_file)
+
+parameter_list=parameter_data['Parameters']
+plane_selection_value=parameter_list['plane_select']
+coordinate_tuple=tuple(parameter_list['origin_value'])
+rectangle_length=parameter_list['Rectangle_length']
+rectangle_height=parameter_list['Rectangle_height']
+extrusion_length=parameter_list['Beam width']
+App.activeDocument().addObject('Sketcher::SketchObject', 'Sketch')
+	if plane_selection_value==1:
+		rot=App.Rotation(0.000000,0.000000,0.000000,1.000000)
+		#App.activeDocument().Sketch.Placement = App.Placement(App.Vector(coordinate_tuple), App.Rotation(0.000000,0.000000,0.000000,1.000000))
+	elif plane_selection_value==2:
+		rot=App.Rotation(0.500000,0.500000,0.500000,0.500000)
+		#App.activeDocument().Sketch.Placement = App.Placement(App.Vector(coordinate_tuple), App.Rotation(0.500000,0.500000,0.500000,0.500000))
+	elif plane_selection_value==3:
+		rot=App.Rotation(0.707107,0.000000,0.000000,0.707107)
+		#App.activeDocument().Sketch.Placement = App.Placement(App.Vector(coordinate_tuple), App.Rotation(0.707107,0.000000,0.000000,0.707107))
+	else:
+		print("not a valid plane")
+		App.closeDocument(name_document)

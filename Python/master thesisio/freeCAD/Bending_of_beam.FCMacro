@@ -1,0 +1,174 @@
+from PySide import QtGui
+from PySide.QtGui import *
+import FreeCAD as App
+import FreeCADGui as Gui
+import FemGui as Fem
+import ObjectsFem
+import numpy as np
+from femmesh.gmshtools import GmshTools as gt
+from femtools import ccxtools
+import json
+import matplotlib.pyplot as plt
+name_document="Bending_of_beam"
+
+try:
+	App.openDocument(f'C:/Users/Admin/Desktop/master thesis/FreeCAD/{name_document}.FCStd')
+except:
+	doc=App.newDocument(name_document)	
+	Gui.activeDocument().activeView().viewDefaultOrientation() 	
+else:
+	pass
+
+doc=App.activeDocument()
+#############rectangular beam parameter input#########################
+
+
+rectangle_length=40
+rectangle_height=40
+extrusion_length=1000
+ 
+#################functions###########################
+'''This function contains the sketch for the rectangular beam,check for fully constrained sketch or not,user defined input for key parameters and also defining plane for sketching'''
+def sketch_rectangular_beam(): 
+	Geometric_list=[]
+	constraint_list=[]
+
+	########adding sketch environment at desired coordinates#################
+	App.activeDocument().addObject('Sketcher::SketchObject', 'Sketch')
+	rot=App.Rotation(0.500000,0.500000,0.500000,0.500000)
+	App.activeDocument().Sketch.Placement = App.Placement(App.Vector(0,0,0),rot)
+
+	#############creation of rectangular beam ################
+	Geometric_list.append(Part.LineSegment(App.Vector(-25,20,0),App.Vector(-25,-20,0)))
+	Geometric_list.append(Part.LineSegment(App.Vector(-25,-20,0),App.Vector(25,-20,0)))
+	Geometric_list.append(Part.LineSegment(App.Vector(25,-20,0),App.Vector(25,20,0)))
+	Geometric_list.append(Part.LineSegment(App.Vector(25,20,0),App.Vector(-25,20,0)))
+	Geometric_list.append(Part.Point(App.Vector(0,0,0)))
+	App.activeDocument().getObject('Sketch').addGeometry(Geometric_list,False)
+	
+	########### constraining the above created rectangular beam ##############
+	constraint_list.append(Sketcher.Constraint('Coincident',0,2,1,1))
+	constraint_list.append(Sketcher.Constraint('Coincident',1,2,2,1))
+	constraint_list.append(Sketcher.Constraint('Coincident',2,2,3,1))
+	constraint_list.append(Sketcher.Constraint('Coincident',3,2,0,1))
+	constraint_list.append(Sketcher.Constraint('Horizontal',1))
+	constraint_list.append(Sketcher.Constraint('Horizontal',3))
+	constraint_list.append(Sketcher.Constraint('Vertical',0))
+	constraint_list.append(Sketcher.Constraint('Vertical',2))
+	constraint_list.append(Sketcher.Constraint('Symmetric',1,2,0,1,4,1))
+	constraint_list.append(Sketcher.Constraint('Coincident',4,1,-1,1))
+	constraint_list.append(Sketcher.Constraint('DistanceY',0,2,0,1,47.033902))
+	constraint_list.append(Sketcher.Constraint('DistanceX',1,1,1,2,61.864398))
+	App.activeDocument().getObject('Sketch').addConstraint(constraint_list)
+	#########adding dimension####################
+	App.activeDocument().getObject('Sketch').setDatum(10,App.Units.Quantity(f'{rectangle_height}mm'))
+	App.activeDocument().getObject('Sketch').setDatum(11,App.Units.Quantity(f'{rectangle_length}mm'))
+	##########renaming sketch####################
+	App.ActiveDocument.getObject("Sketch").Label="Sketch_of_beam"
+	App.activeDocument().getObject('Sketch').Visibility=False
+	###########check for fully constrained sketch or not####################
+	ActiveSketch=App.ActiveDocument.getObject('Sketch')
+	full_constrained=ActiveSketch.FullyConstrained
+	if full_constrained==True:
+		print("The sketch for rectangular beam is fully constrained")
+	else:
+		print("The sketch for rectangular beam is not fully constrained. Making a sketch fully constrained is better for unwanted descrepancies in the results.")
+	
+
+def Extrusion_rectangular_beam():
+	
+	App.activeDocument().addObject('Part::Extrusion','Extrude') ## creation of 3D body environment###
+	f = App.activeDocument().getObject('Extrude')
+	f.Base = App.activeDocument().getObject('Sketch')
+	f.DirMode = "Normal"
+	f.DirLink = None
+	f.LengthFwd = extrusion_length
+	f.LengthRev = 0.000000000000000
+	f.Solid = True
+	f.Reversed = False
+	f.Symmetric = False
+	f.TaperAngle = 0.000000000000000
+	f.TaperAngleRev = 0.000000000000000
+	f.Label = "Beam_body"
+	App.ActiveDocument.recompute()
+
+
+def Analysis_tool():
+	
+	analysis_object=ObjectsFem.makeAnalysis(App.ActiveDocument, 'Analysis')
+	solver_object = ObjectsFem.makeSolverCalculixCcxTools(doc, "CalculiX")
+	solver_object.GeometricalNonlinearity = 'linear'
+	solver_object.ThermoMechSteadyState = True
+	solver_object.MatrixSolverType = 'default'
+	solver_object.IterationsControlParameterTimeUse = False
+	analysis_object.addObject(solver_object)
+	
+	#FEM Meshing#
+	mesh = ObjectsFem.makeMeshGmsh(doc, 'FEMMeshGmsh') #create a mesh environment
+	mesh.Part=doc.Extrude
+	mesh.ElementDimension="From Shape"	 #Setting type of element for mesh 1D element= "1D", 2D ="2D", 3D="3D",automatic detection by the mesh program="From shape" 
+	mesh.ElementOrder="2nd"		 # Element order for midside nodes ("2nd") and no mid side nodes ("1st")
+	mesh.CharacteristicLengthMax=20           # maximum element size
+	mesh.CharacteristicLengthMin=0		 # minimum element size
+	gt(mesh).create_mesh()		 #run the mesh parameters and add to specified model
+	analysis_object.addObject(mesh)
+	
+	# material
+	material_object = ObjectsFem.makeMaterialSolid(doc, "SolidMaterial")
+	mat = material_object.Material
+	mat['Name'] = "Steel-Generic"
+	mat['YoungsModulus'] = "210000 MPa"
+	mat['PoissonRatio'] = "0.30"
+	mat['Density'] = "7900 kg/m^3"
+	material_object.Material = mat
+	material_object.References = [(doc.Extrude, "Solid1")]
+	analysis_object.addObject(material_object)
+	
+	# fixed_constraint
+	fixed_constraint = ObjectsFem.makeConstraintFixed(doc, "FemConstraintFixed")
+	fixed_constraint.References = [(doc.Extrude, "Edge3")]
+	analysis_object.addObject(fixed_constraint)
+
+	#displacement constraint
+	displacement_constraint=ObjectsFem.makeConstraintDisplacement(doc, "FemConstraintDisplacement")
+	displacement_constraint.References=[(doc.Extrude, "Edge4")]
+	displacement_constraint.xFree=True
+	displacement_constraint.xFix=False
+	displacement_constraint.yFix=True
+	displacement_constraint.yFree=False
+	displacement_constraint.zFix=True
+	displacement_constraint.zFree=False
+	analysis_object.addObject(displacement_constraint)
+	
+	#Force constraint
+	force_constraint=ObjectsFem.makeConstraintForce(doc, "FemConstraintForce")
+	force_constraint.References=[(doc.Extrude, "Face3")]
+	force_constraint.Force=5000
+	force_constraint.Reversed=True
+	analysis_object.addObject(force_constraint)
+
+	#activating the analysis and executing the result of FEM
+	Fem.setActiveAnalysis(doc.Analysis)             #activating the analysis
+	results=ccxtools.FemToolsCcx()
+	results.purge_results()
+	results.run()
+	
+	#deformation result
+	for m in analysis_object.Group:
+		if m.isDerivedFrom('Fem::FemResultObject'):        
+			result_object = m
+	deformation=result_object.DisplacementLengths
+	node=result_object.NodeNumbers
+	von_mises=result_object.vonMises
+	print(f'maximum deformation in y_direction={max(deformation)}')
+	print(f'minimum deformation in y_direction={min(deformation)}')
+	print(f"maximum von-mises stress={max(von_mises)}")
+	print(f"minimum von-mises stress={min(von_mises)}")
+	return (deformation,node,von_mises)
+		
+###################calling functions####################
+sketch_rectangular_beam()
+Extrusion_rectangular_beam()
+result=Analysis_tool()
+doc.recompute()
+

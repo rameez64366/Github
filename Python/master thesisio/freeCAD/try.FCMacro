@@ -1,0 +1,21 @@
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide.QtGui import *
+doc=App.activeDocument()
+
+mainWindow=Gui.getMainWindow()
+
+comboView=mainWindow.findChild(QDockWidget,"Combo View")
+widgets=comboView.findChildren(QRadioButton)
+#comboBoxes=comboView.findChildren(QComboBox)
+App.Console.PrintMessage(widgets)
+#widgets=mainWindow.findChildren(QWidget)
+#widgetCollection=[]
+#for w in widgets:
+#	widgetType=type(w)
+#	if (widgetType not in widgetCollection):
+#		widgetCollection.append(widgetType)
+#		App.Console.PrintMessage(str(widgetType)+"\n")
+#comboView=mainWindow.findChild(QDockWidget,"Combo View")
+#widgets=comboView.findChildren(QComboBox)
+#App.Console.PrintMessage(comboView)
