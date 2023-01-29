@@ -1,0 +1,28 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS 1")
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+engineeringData1 = system1.GetContainer(ComponentName="Engineering Data")
+material1 = engineeringData1.GetMaterial(Name="bb")
+matlProp1 = material1.GetProperty(Name="Elasticity")
+matlProp1.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp1.SetData(
+    Variables=["Young's Modulus"],
+    Values=[["28000 [MPa]"]])
+matlProp1.SetData(
+    Variables=["Young's Modulus"],
+    Values=[["210000 [MPa]"]])
+Save(Overwrite=True)
+modelComponent1 = system1.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1.Edit()
+model1.Exit()
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+Save(Overwrite=True)

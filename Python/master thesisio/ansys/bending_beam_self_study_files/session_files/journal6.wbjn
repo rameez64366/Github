@@ -1,0 +1,76 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+template1 = GetTemplate(
+    TemplateName="Static Structural",
+    Solver="ANSYS")
+system1 = GetSystem(Name="SYS")
+system2 = template1.CreateSystem(
+    Position="Below",
+    RelativeTo=system1)
+geometry1 = system2.GetContainer(ComponentName="Geometry")
+geometry1.Edit()
+Save(Overwrite=True)
+geometry1.Exit()
+engineeringData1 = system2.GetContainer(ComponentName="Engineering Data")
+matl1 = engineeringData1.CreateMaterial(Name="hollow")
+matlProp1 = matl1.CreateProperty(
+    Name="Elasticity",
+    Behavior="Isotropic",
+    Qualifiers={"Definition": "", "Behavior": "Isotropic"})
+material1 = engineeringData1.GetMaterial(Name="Structural Steel")
+matlProp2 = material1.GetProperty(Name="Elasticity")
+matlProp2.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp2.SetData(
+    Variables=["Young's Modulus"],
+    Values=[["200000 [MPa]"]])
+matl2 = engineeringData1.CreateMaterial(Name="steel")
+matlProp3 = matl2.CreateProperty(
+    Name="Elasticity",
+    Behavior="Isotropic",
+    Qualifiers={"Definition": "", "Behavior": "Isotropic"})
+matlProp3.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp3.SetData(
+    Index=-1,
+    Variables=["Young's Modulus"],
+    Values=[["210000 [MPa]"]])
+matlProp3.SetData(
+    Variables=["Poisson's Ratio"],
+    Values=[["0.3"]])
+matlProp1.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp1.SetData(
+    Index=-1,
+    Variables=["Young's Modulus"],
+    Values=[["70000 [MPa]"]])
+matlProp1.SetData(
+    Variables=["Poisson's Ratio"],
+    Values=[["0.33"]])
+Save(Overwrite=True)
+modelComponent1 = system2.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system2.GetContainer(ComponentName="Model")
+model1.Edit()
+Save(Overwrite=True)
+model1.Exit()
+geometry1.Edit()
+Save(Overwrite=True)
+geometry1.Exit()
+modelComponent1.Refresh()
+model1.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+model1.Exit()
+system2.DisplayText = "normal stress and deformation circular shaft"
+Save(Overwrite=True)

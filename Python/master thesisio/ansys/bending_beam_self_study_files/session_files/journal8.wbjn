@@ -1,0 +1,59 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS")
+system1.DisplayText = "1D rectangular beam"
+system2 = GetSystem(Name="SYS 1")
+system2.DisplayText = "3D rectangular beam"
+template1 = GetTemplate(
+    TemplateName="Static Structural",
+    Solver="ANSYS")
+system3 = GetSystem(Name="SYS 3")
+system4 = template1.CreateSystem(
+    Position="Right",
+    RelativeTo=system3)
+geometry1 = system4.GetContainer(ComponentName="Geometry")
+geometry1.Edit()
+Save(Overwrite=True)
+geometry1.Exit()
+modelComponent1 = system4.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system4.GetContainer(ComponentName="Model")
+model1.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+model1.Exit()
+model2 = system3.GetContainer(ComponentName="Model")
+model2.Edit()
+model2.Exit()
+system5 = GetSystem(Name="SYS 4")
+model3 = system5.GetContainer(ComponentName="Model")
+model3.Edit()
+model3.Exit()
+system5.DisplayText = "torsion circular shaft"
+model2.Edit()
+Save(Overwrite=True)
+model2.Exit()
+system4.DisplayText = "Ibeam"
+model1.Edit()
+model1.Exit()
+Save(Overwrite=True)
+system6 = template1.CreateSystem(
+    Position="Right",
+    RelativeTo=system4)
+system3.Move(
+    Position="Right",
+    RelativeTo=system5)
+system6.DisplayText = "Hollow rectangle"
+geometry2 = system6.GetContainer(ComponentName="Geometry")
+geometry2.Edit()
+Save(Overwrite=True)
+geometry2.Exit()
+modelComponent2 = system6.GetComponent(Name="Model")
+modelComponent2.Refresh()
+model4 = system6.GetContainer(ComponentName="Model")
+model4.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+model4.Exit()
+Save(Overwrite=True)

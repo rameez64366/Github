@@ -1,0 +1,84 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS 2")
+system1.Copy(KeepConnections=True)
+system2 = GetSystem(Name="SYS 3")
+system2.Move(
+    Position="Right",
+    RelativeTo=system1)
+geometry1 = system2.GetContainer(ComponentName="Geometry")
+geometry1.Edit()
+Save(Overwrite=True)
+geometry1.Exit()
+modelComponent1 = system2.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system2.GetContainer(ComponentName="Model")
+model1.Edit()
+Save(Overwrite=True)
+model1.Exit()
+system2.Move(
+    Position="Below",
+    RelativeTo=system1)
+system1.Copy(KeepConnections=True)
+system3 = GetSystem(Name="SYS 4")
+system3.Move(
+    Position="Right",
+    RelativeTo=system1)
+model2 = system1.GetContainer(ComponentName="Model")
+model2.Edit()
+model2.Exit()
+model3 = system3.GetContainer(ComponentName="Model")
+model3.Edit()
+Save(Overwrite=True)
+engineeringData1 = system3.GetContainer(ComponentName="Engineering Data")
+material1 = engineeringData1.GetMaterial(Name="steel")
+matlProp1 = material1.GetProperty(Name="Elasticity")
+matlProp1.SetQualifier(
+    Qualifier="Derive from",
+    Value="Shear Modulus and Poisson's Ratio")
+matlProp1.SetVariableProperty(
+    VariableName="Shear Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp1.SetData(
+    Variables=["Shear Modulus"],
+    Values=[["80769.2307692308 [MPa]"]])
+matlProp1.SetData(
+    Variables=["Shear Modulus"],
+    Values=[["25 [MPa]"]])
+matlProp1.SetVariableProperty(
+    VariableName="Shear Modulus",
+    Property="Unit",
+    Value="GPa")
+matlProp1.SetData(
+    Variables=["Shear Modulus"],
+    Values=[["0.025 [GPa]"]])
+matlProp1.SetData(
+    Variables=["Shear Modulus"],
+    Values=[["25 [GPa]"]])
+material2 = engineeringData1.GetMaterial(Name="hollow")
+matlProp2 = material2.GetProperty(Name="Elasticity")
+matlProp2.SetQualifier(
+    Qualifier="Derive from",
+    Value="Shear Modulus and Poisson's Ratio")
+matlProp2.SetVariableProperty(
+    VariableName="Shear Modulus",
+    Property="Unit",
+    Value="GPa")
+matlProp2.SetData(
+    Variables=["Shear Modulus"],
+    Values=[["26.3157894736842 [GPa]"]])
+matlProp2.SetData(
+    Variables=["Shear Modulus"],
+    Values=[["77 [GPa]"]])
+modelComponent2 = system3.GetComponent(Name="Model")
+modelComponent2.Refresh()
+model3.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+model3.Exit()
+Save(Overwrite=True)
+Save(Overwrite=True)

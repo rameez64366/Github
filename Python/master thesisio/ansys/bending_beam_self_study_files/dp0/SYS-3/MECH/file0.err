@@ -1,0 +1,15 @@
+/COM,ANSYS RELEASE 2022 R2           BUILD 22.2      UP20220516       14:16:27
+
+ *** WARNING ***                         CP =       0.531   TIME= 14:16:27
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =       0.828   TIME= 14:16:28
+ Overconstraint may occur for Lagrange multiplier or MPC based contact   
+ algorithm.                                                              
+
+ *** WARNING ***                         CP =       0.828   TIME= 14:16:28
+ Certain contact elements (for example 7132 & 7368) overlap with other.  
+
+ *** WARNING ***                         CP =       0.828   TIME= 14:16:28
+ Certain contact pairs (for example 11 & 7) overlap with other.          
