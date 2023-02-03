@@ -93,7 +93,7 @@
           </PropertyData>
           <PropertyData property="pr5">
             <Data format="string">-</Data>
-            <ParameterValue parameter="pa13" format="float">
+            <ParameterValue parameter="pa12" format="float">
               <Data>250000000</Data>
               <Qualifier name="Variable Type">Dependent</Qualifier>
               <Qualifier name="Offset">0 [Pa]</Qualifier>
@@ -354,7 +354,7 @@
               <Qualifier name="Scale">1</Qualifier>
               <Qualifier name="Units">Pa</Qualifier>
             </ParameterValue>
-            <ParameterValue parameter="pa12" format="float">
+            <ParameterValue parameter="pa13" format="float">
               <Data>76923076923.0769</Data>
               <Qualifier name="Variable Type">Dependent</Qualifier>
               <Qualifier name="Offset">0 [Pa]</Qualifier>
@@ -388,7 +388,7 @@
           </PropertyData>
           <PropertyData property="pr15">
             <Data format="string">-</Data>
-            <Qualifier name="guid">3d93b0cc-3dd0-40fb-9138-6b1b1b5af477</Qualifier>
+            <Qualifier name="guid">b2fe64bf-3fb7-40fc-9628-ef7b6616436a</Qualifier>
             <Qualifier name="Display">False</Qualifier>
           </PropertyData>
         </BulkDetails>
@@ -460,7 +460,7 @@
               <Qualifier name="Scale">1</Qualifier>
               <Qualifier name="Units">Pa</Qualifier>
             </ParameterValue>
-            <ParameterValue parameter="pa12" format="float">
+            <ParameterValue parameter="pa13" format="float">
               <Data>80769230769.2308</Data>
               <Qualifier name="Variable Type">Dependent</Qualifier>
               <Qualifier name="Offset">0 [Pa]</Qualifier>
@@ -514,7 +514,7 @@
           <Name>Temperature</Name>
           <Units name="Temperature" />
         </ParameterDetails>
-        <ParameterDetails id="pa13">
+        <ParameterDetails id="pa12">
           <Name>Tensile Yield Strength</Name>
           <Units name="Stress" />
         </ParameterDetails>
@@ -591,7 +591,7 @@
           <Name>Bulk Modulus</Name>
           <Units name="Stress" />
         </ParameterDetails>
-        <ParameterDetails id="pa12">
+        <ParameterDetails id="pa13">
           <Name>Shear Modulus</Name>
           <Units name="Stress" />
         </ParameterDetails>
@@ -650,13 +650,13 @@
     <Materials>
       <Material>
         <Name>Structural Steel</Name>
-        <DataTransferID>b2225f53-3cbc-4323-827e-ee8c961acc95</DataTransferID>
-        <PreviousTransferIDs>67f76e22-885e-4191-b404-42a2f911c837,,1b5649bd-3813-4721-9622-d4cc90dd8dda,,</PreviousTransferIDs>
+        <DataTransferID>b51a7cc4-ae4e-4a24-929c-c4adb4744886</DataTransferID>
+        <PreviousTransferIDs>67f76e22-885e-4191-b404-42a2f911c837,,7cb064ee-a31d-43a1-a564-443a76e6925f,,b83ab40d-a765-48f0-a375-82a150bb23d4,,</PreviousTransferIDs>
       </Material>
       <Material>
         <Name>bb</Name>
-        <DataTransferID>959b2a10-4326-414f-b8b1-24dcf6eeea9a</DataTransferID>
-        <PreviousTransferIDs>04f9dab8-1f21-4efe-a453-b43587137728,,28f5a58f-5770-47e6-ac18-6e44feb5cc0c,,</PreviousTransferIDs>
+        <DataTransferID>57a0e9dc-f84a-4bef-a4e3-8d5fa9bb0752</DataTransferID>
+        <PreviousTransferIDs>04f9dab8-1f21-4efe-a453-b43587137728,,67720a7f-3513-4720-805f-606f7d3f6834,,a604f718-4277-4ede-9d07-e8d280d88a99,,</PreviousTransferIDs>
       </Material>
     </Materials>
   </ANSYSWBTransferData>

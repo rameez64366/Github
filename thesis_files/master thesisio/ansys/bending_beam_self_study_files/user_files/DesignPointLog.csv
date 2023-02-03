@@ -1,0 +1,12 @@
+﻿# 
+# This file contains the parameter values of the Design Points successfully updated by Ansys Workbench.
+# Project name: bending_beam_self_study
+# Creation date: 02/01/2023 17:32:07
+# 
+# 02/01/2023 17:32:07
+# The parameters defined in the project are:
+# ,P1 - Rectangle_breadth,P2 - Rectangle_height,P3 - Extrusion_length,P4 - Rectangle_B [mm],P5 - Rectangle_H [mm]
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P1,P2,P3,P4,P5
+DP 0,0,0,0,9.9999999999999982,9.9999999999999982

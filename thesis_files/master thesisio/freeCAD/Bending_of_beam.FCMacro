@@ -8,7 +8,7 @@ import numpy as np
 from femmesh.gmshtools import GmshTools as gt
 from femtools import ccxtools
 import json
-import matplotlib.pyplot as plt
+import math
 name_document="Bending_of_beam"
 
 try:
@@ -157,13 +157,11 @@ def Analysis_tool():
 	for m in analysis_object.Group:
 		if m.isDerivedFrom('Fem::FemResultObject'):        
 			result_object = m
-	deformation=result_object.DisplacementLengths
+	deformation_vectors=result_object.DisplacementVectors
+	length=result_object.DisplacementLengths
+	deformation=[i[1] for i in deformation_vectors]
 	node=result_object.NodeNumbers
 	von_mises=result_object.vonMises
-	print(f'maximum deformation in y_direction={max(deformation)}')
-	print(f'minimum deformation in y_direction={min(deformation)}')
-	print(f"maximum von-mises stress={max(von_mises)}")
-	print(f"minimum von-mises stress={min(von_mises)}")
 	return (deformation,node,von_mises)
 		
 ###################calling functions####################
@@ -171,4 +169,9 @@ sketch_rectangular_beam()
 Extrusion_rectangular_beam()
 result=Analysis_tool()
 doc.recompute()
+
+#####export results####
+#new_data={"Results":{"Deformation":result[0],"Nodes":result[1],"Von mises":result[2]}}
+#with open(r"C:\Users\Admin\Desktop\FreeCADresult.json", "w") as data_file:
+#	json.dump(new_data, data_file, indent=4)
 

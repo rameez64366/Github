@@ -399,7 +399,7 @@
           <PropertyData property="pr0">
             <Data format="string">-</Data>
             <ParameterValue parameter="pa0" format="float">
-              <Data>234</Data>
+              <Data>130</Data>
               <Qualifier name="Variable Type">Dependent</Qualifier>
               <Qualifier name="Offset">0</Qualifier>
               <Qualifier name="Scale">1</Qualifier>
@@ -407,7 +407,7 @@
               </Qualifier>
             </ParameterValue>
             <ParameterValue parameter="pa1" format="float">
-              <Data>247</Data>
+              <Data>181</Data>
               <Qualifier name="Variable Type">Dependent</Qualifier>
               <Qualifier name="Offset">0</Qualifier>
               <Qualifier name="Scale">1</Qualifier>
@@ -415,7 +415,7 @@
               </Qualifier>
             </ParameterValue>
             <ParameterValue parameter="pa2" format="float">
-              <Data>209</Data>
+              <Data>143</Data>
               <Qualifier name="Variable Type">Dependent</Qualifier>
               <Qualifier name="Offset">0</Qualifier>
               <Qualifier name="Scale">1</Qualifier>
@@ -650,13 +650,13 @@
     <Materials>
       <Material>
         <Name>Structural Steel</Name>
-        <DataTransferID>b5db67e4-4220-40be-bcf8-61308e03a24f</DataTransferID>
+        <DataTransferID>702d1808-72de-4e29-b834-0838f49d34d8</DataTransferID>
         <PreviousTransferIDs>
         </PreviousTransferIDs>
       </Material>
       <Material>
         <Name>steel</Name>
-        <DataTransferID>1203016c-f580-4a9a-ae78-b9baabe75f16</DataTransferID>
+        <DataTransferID>0beb5ea2-35ae-42bc-aad7-0a8f5e6c6f66</DataTransferID>
         <PreviousTransferIDs>
         </PreviousTransferIDs>
       </Material>
