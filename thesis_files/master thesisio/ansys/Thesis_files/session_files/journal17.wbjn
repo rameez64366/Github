@@ -1,0 +1,20 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS 3")
+system1.Copy(KeepConnections=True)
+system2 = GetSystem(Name="SYS 2")
+engineeringData1 = system2.GetContainer(ComponentName="Engineering Data")
+material1 = engineeringData1.GetMaterial(Name="AISI 1020 steel")
+matlProp1 = material1.CreateProperty(
+    Name="Isotropic Hardening",
+    Definition="Multilinear",
+    Qualifiers={"Definition": "Multilinear", "Behavior": ""})
+matlProp1.BeginBatchUpdate()
+matlProp1.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Index=-1,
+    Variables=["Temperature"],
+    Values=[["22 [C]"]])
+matlProp1.EndBatchUpdate()

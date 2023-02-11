@@ -1,0 +1,12 @@
+﻿# 
+# This file contains the parameter values of the Design Points successfully updated by Ansys Workbench.
+# Project name: design1
+# Creation date: 12/31/2022 17:43:10
+# 
+# 12/31/2022 17:43:10
+# The parameters defined in the project are:
+# ,P1 - parameter1
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P1
+DP 0,0

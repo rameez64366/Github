@@ -1,0 +1,31 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS 3")
+modelComponent1 = system1.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+engineeringDataComponent1 = system1.GetComponent(Name="Engineering Data")
+system2 = GetSystem(Name="SYS")
+engineeringDataComponent2 = system2.GetComponent(Name="Engineering Data")
+engineeringDataComponent1.ReplaceWithShare(
+    TargetSystem=system1,
+    ComponentToShare=engineeringDataComponent2,
+    SourceSystem=system2)
+engineeringDataComponent1.DeleteShare(System=system1)
+system1.Move(
+    Position="Below",
+    RelativeTo=system2)
+system3 = GetSystem(Name="SYS 4")
+system1.Move(
+    Position="Left",
+    RelativeTo=system3)
+system1.Move(
+    Position="Below",
+    RelativeTo=system2)
+modelComponent1.Refresh()
+model1.Edit()
+Save(Overwrite=True)
+model1.Exit()
+Save(Overwrite=True)

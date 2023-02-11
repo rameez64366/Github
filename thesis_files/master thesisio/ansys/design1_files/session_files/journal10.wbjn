@@ -1,0 +1,76 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+designPoint1 = Parameters.GetDesignPoint(Name="0")
+parameter1 = Parameters.GetParameter(Name="P1")
+designPoint1.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="40")
+parameter2 = Parameters.GetParameter(Name="P2")
+designPoint1.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="40")
+parameter3 = Parameters.GetParameter(Name="P3")
+designPoint1.SetParameterExpression(
+    Parameter=parameter3,
+    Expression="1000")
+parameter4 = Parameters.GetParameter(Name="P4")
+designPoint1.SetParameterExpression(
+    Parameter=parameter4,
+    Expression="500")
+Save(Overwrite=True)
+system1 = GetSystem(Name="SYS")
+geometryComponent1 = system1.GetComponent(Name="Geometry")
+geometryComponent1.Refresh()
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+modelComponent1 = system1.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+Save(Overwrite=True)
+model1.Exit()
+Save(Overwrite=True)
+designPoint2 = Parameters.CreateDesignPoint()
+designPoint2.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="40")
+designPoint2.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="20")
+designPoint2.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="60")
+designPoint2.Delete()
+parameter5 = Parameters.GetParameter(Name="P5")
+designPoint1.SetParameterExpression(
+    Parameter=parameter5,
+    Expression="20 [mm]")
+designPoint3 = Parameters.CreateDesignPoint()
+designPoint3.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="40")
+designPoint3.SetParameterExpression(
+    Parameter=parameter5,
+    Expression="10 [mm]")
+designPoint4 = Parameters.CreateDesignPoint()
+designPoint4.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="40")
+designPoint4.SetParameterExpression(
+    Parameter=parameter5,
+    Expression="8 [mm]")
+designPoint5 = Parameters.CreateDesignPoint()
+designPoint5.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="20")
+designPoint5.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="60")
+designPoint5.SetParameterExpression(
+    Parameter=parameter5,
+    Expression="10 [mm]")
+backgroundSession1 = UpdateAllDesignPoints(DesignPoints=[designPoint1, designPoint3, designPoint4, designPoint5])
+designPoint5.CopyParameterExpressions(ToDesignPoint=designPoint1)
+Save(Overwrite=True)

@@ -1,0 +1,106 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS 2")
+engineeringData1 = system1.GetContainer(ComponentName="Engineering Data")
+material1 = engineeringData1.GetMaterial(Name="AISI 1020 steel")
+matlProp1 = material1.GetProperty(Name="Isotropic Hardening")
+matlProp1.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Plastic Strain"],
+    Values=[["7.8886090522101181E-31 [m m^-1]"]])
+matlProp1.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Stress"],
+    Values=[["7.8886090522101181E-31 [MPa]"]])
+matlProp1.Delete(Definition="Multilinear")
+matlProp2 = material1.CreateProperty(
+    Name="Isotropic Hardening",
+    Definition="Multilinear",
+    Qualifiers={"Definition": "Multilinear", "Behavior": ""})
+matlProp2.BeginBatchUpdate()
+matlProp2.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Index=-1,
+    Variables=["Temperature"],
+    Values=[["22 [C]"]])
+matlProp2.EndBatchUpdate()
+matlProp2.BeginBatchUpdate()
+matlProp2.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Plastic Strain", "Stress", "Temperature"],
+    Values=[["0.0001 [m m^-1]"], ["308.4 [Pa]"], ["22 [C]"]])
+matlProp2.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Index=-1,
+    Variables=["Plastic Strain", "Stress", "Temperature"],
+    Values=[["0.00014 [m m^-1]", "0.00019 [m m^-1]", "0.00026 [m m^-1]", "0.00035 [m m^-1]", "0.00047 [m m^-1]", "0.00063 [m m^-1]", "0.00085 [m m^-1]", "0.00113 [m m^-1]", "0.00131 [m m^-1]", "0.00151 [m m^-1]", "0.00174 [m m^-1]", "0.002 [m m^-1]", "0.0022 [m m^-1]", "0.00242 [m m^-1]", "0.00265 [m m^-1]", "0.00291 [m m^-1]", "0.0032 [m m^-1]", "0.00351 [m m^-1]", "0.00385 [m m^-1]", "0.00422 [m m^-1]", "0.00462 [m m^-1]", "0.00506 [m m^-1]", "0.00635 [m m^-1]", "0.00795 [m m^-1]", "0.01237 [m m^-1]", "0.0191 [m m^-1]", "0.02927 [m m^-1]", "0.0445 [m m^-1]", "0.06717 [m m^-1]", "0.10069 [m m^-1]", "0.12296 [m m^-1]", "0.1499 [m m^-1]"], ["312.6 [Pa]", "316.7 [Pa]", "320.9 [Pa]", "325 [Pa]", "329.2 [Pa]", "333.4 [Pa]", "337.5 [Pa]", "341.7 [Pa]", "343.8 [Pa]", "345.8 [Pa]", "347.9 [Pa]", "350 [Pa]", "351.4 [Pa]", "352.8 [Pa]", "354.2 [Pa]", "355.6 [Pa]", "357 [Pa]", "358.4 [Pa]", "359.8 [Pa]", "361.2 [Pa]", "362.6 [Pa]", "364 [Pa]", "367.5 [Pa]", "371 [Pa]", "378 [Pa]", "385 [Pa]", "392 [Pa]", "399 [Pa]", "406 [Pa]", "413 [Pa]", "416.5 [Pa]", "420 [Pa]"], ["22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]"]])
+matlProp2.EndBatchUpdate()
+matlProp2.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Plastic Strain"],
+    Values=[["0 [m m^-1]"]])
+matlProp2.BeginBatchUpdate()
+matlProp2.SetVariableProperty(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    VariableName="Stress",
+    Property="Unit",
+    Value="MPa")
+matlProp2.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Stress"],
+    Values=[["0.00030839999999999996 [MPa]", "0.0003126 [MPa]", "0.0003167 [MPa]", "0.00032089999999999994 [MPa]", "0.000325 [MPa]", "0.0003292 [MPa]", "0.00033339999999999997 [MPa]", "0.00033749999999999996 [MPa]", "0.00034169999999999996 [MPa]", "0.0003438 [MPa]", "0.0003458 [MPa]", "0.00034789999999999995 [MPa]", "0.00035 [MPa]", "0.0003514 [MPa]", "0.0003528 [MPa]", "0.0003542 [MPa]", "0.0003556 [MPa]", "0.000357 [MPa]", "0.0003584 [MPa]", "0.0003598 [MPa]", "0.0003612 [MPa]", "0.00036260000000000003 [MPa]", "0.00036399999999999996 [MPa]", "0.0003675 [MPa]", "0.00037099999999999996 [MPa]", "0.00037799999999999997 [MPa]", "0.000385 [MPa]", "0.000392 [MPa]", "0.000399 [MPa]", "0.000406 [MPa]", "0.00041299999999999996 [MPa]", "0.0004165 [MPa]", "0.00041999999999999996 [MPa]"]])
+matlProp2.EndBatchUpdate()
+matlProp2.BeginBatchUpdate()
+matlProp2.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Stress", "Temperature"],
+    Values=[["308.4 [MPa]", "312.6 [MPa]", "316.7 [MPa]", "320.9 [MPa]", "325 [MPa]", "329.2 [MPa]", "333.4 [MPa]", "337.5 [MPa]", "341.7 [MPa]", "343.8 [MPa]", "345.8 [MPa]", "347.9 [MPa]", "350 [MPa]", "351.4 [MPa]", "352.8 [MPa]", "354.2 [MPa]", "355.6 [MPa]", "357 [MPa]", "358.4 [MPa]", "359.8 [MPa]", "361.2 [MPa]", "362.6 [MPa]", "364 [MPa]", "367.5 [MPa]", "371 [MPa]", "378 [MPa]", "385 [MPa]", "392 [MPa]", "399 [MPa]", "406 [MPa]", "413 [MPa]", "416.5 [MPa]", "420 [MPa]"], ["22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]"]])
+matlProp2.EndBatchUpdate()
+matlProp2.BeginBatchUpdate()
+matlProp2.EndBatchUpdate()
+matlProp2.Delete(Definition="Multilinear")
+matlProp3 = material1.CreateProperty(
+    Name="Isotropic Hardening",
+    Definition="Bilinear",
+    Qualifiers={"Definition": "Bilinear", "Behavior": ""})
+matlProp3.SetVariableProperty(
+    VariableName="Yield Strength",
+    Property="Unit",
+    Value="MPa")
+matlProp3.SetData(
+    Index=-1,
+    Variables=["Yield Strength"],
+    Values=[["350 [MPa]"]])
+matlProp3.SetVariableProperty(
+    VariableName="Tangent Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp3.SetData(
+    Variables=["Tangent Modulus"],
+    Values=[["7.8886090522101181E-31 [MPa]"]])
+matlProp3.SetData(
+    Variables=["Tangent Modulus"],
+    Values=[["466 [MPa]"]])
+matlProp3.Delete(Definition="Bilinear")
+matlProp4 = material1.CreateProperty(
+    Name="Isotropic Hardening",
+    Definition="Multilinear",
+    Qualifiers={"Definition": "Multilinear", "Behavior": ""})
+matlProp4.BeginBatchUpdate()
+matlProp4.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Index=-1,
+    Variables=["Temperature"],
+    Values=[["22 [C]"]])
+matlProp4.EndBatchUpdate()

@@ -10,3 +10,26 @@
 # The following header line defines the name of the columns by reference to the parameters.
 Name,P1
 DP 0,0
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/11/2023 13:21:07
+# 
+# 
+# 02/11/2023 13:26:07
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P4 - Concentrated_load_distance_from_left,P3 - Extrusion_length,P1 - Rectangle_length,P2 - Rectangle_breadth,P5 - Mesh Element Size [mm],P6 - Deformation of beam neutral axis Minimum [mm],P7 - Maximum Principal Stress Maximum [MPa],P8 - Maximum principal stress unaveraged Maximum [MPa],P9 - Mesh Nodes,P10 - Mesh Elements,P11 - concentrated_load Y Component [N]
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P4,P3,P1,P2,P5,P6,P7,P8,P9,P10,P11
+DP 0,500,1000,40,40,20,-2.3360843658447266,115.65268707275391,115.65490017530381,1521,200,-5000
+DP 1,500,1000,40,40,10,-2.3366506099700928,116.31139755249023,116.33864914328761,9065,1600,-5000
+DP 2,500,1000,40,40,8,-2.3367851972579956,116.40415954589844,116.40815761706509,16728,3150,-5000
+DP 3,500,1000,20,60,10,-2.3366506099700928,116.31139755249023,116.33864914328761,9065,1600,-5000
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/11/2023 13:36:10
+# 
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/11/2023 13:51:28
+# 

@@ -1,0 +1,49 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+Save(Overwrite=True)
+system1 = GetSystem(Name="SYS 3")
+system1.Copy(KeepConnections=True)
+system2 = GetSystem(Name="SYS 2")
+engineeringData1 = system2.GetContainer(ComponentName="Engineering Data")
+material1 = engineeringData1.GetMaterial(Name="AISI 1020 steel")
+matlProp1 = material1.CreateProperty(
+    Name="Isotropic Hardening",
+    Definition="Multilinear",
+    Qualifiers={"Definition": "Multilinear", "Behavior": ""})
+matlProp1.BeginBatchUpdate()
+matlProp1.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Index=-1,
+    Variables=["Temperature"],
+    Values=[["22 [C]"]])
+matlProp1.EndBatchUpdate()
+matlProp1.BeginBatchUpdate()
+matlProp1.SetVariableProperty(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    VariableName="Stress",
+    Property="Unit",
+    Value="MPa")
+matlProp1.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Stress"],
+    Values=[["7.8886090522101181E-31 [MPa]"]])
+matlProp1.EndBatchUpdate()
+matlProp1.BeginBatchUpdate()
+matlProp1.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Plastic Strain", "Stress", "Temperature"],
+    Values=[["0 [m m^-1]"], ["0 [MPa]"], ["22 [C]"]])
+matlProp1.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Index=-1,
+    Variables=["Plastic Strain", "Stress", "Temperature"],
+    Values=[["0 [m m^-1]", "0 [m m^-1]", "0 [m m^-1]", "4E-05 [m m^-1]", "0.0001 [m m^-1]", "0.00013 [m m^-1]", "0.00018 [m m^-1]", "0.00025 [m m^-1]", "0.00034 [m m^-1]", "0.00046 [m m^-1]", "0.00062 [m m^-1]", "0.00084 [m m^-1]", "0.00112 [m m^-1]", "0.0013 [m m^-1]", "0.0015 [m m^-1]", "0.00172 [m m^-1]", "0.00199 [m m^-1]", "0.00218 [m m^-1]", "0.0024 [m m^-1]", "0.00264 [m m^-1]", "0.00289 [m m^-1]", "0.00318 [m m^-1]", "0.00348 [m m^-1]", "0.00382 [m m^-1]", "0.00419 [m m^-1]", "0.00459 [m m^-1]", "0.00503 [m m^-1]", "0.0063 [m m^-1]", "0.00788 [m m^-1]", "0.01224 [m m^-1]", "0.01884 [m m^-1]", "0.02873 [m m^-1]", "0.04336 [m m^-1]", "0.06474 [m m^-1]", "0.09553 [m m^-1]", "0.11548 [m m^-1]", "0.13908 [m m^-1]"], ["154.3 [MPa]", "216.1 [MPa]", "267.6 [MPa]", "298.6 [MPa]", "308.9 [MPa]", "313.1 [MPa]", "317.3 [MPa]", "321.5 [MPa]", "325.7 [MPa]", "329.9 [MPa]", "334.1 [MPa]", "338.4 [MPa]", "342.7 [MPa]", "344.8 [MPa]", "347 [MPa]", "349.1 [MPa]", "351.3 [MPa]", "352.8 [MPa]", "354.3 [MPa]", "355.8 [MPa]", "357.3 [MPa]", "358.8 [MPa]", "360.3 [MPa]", "361.8 [MPa]", "363.4 [MPa]", "364.9 [MPa]", "366.5 [MPa]", "370.5 [MPa]", "374.6 [MPa]", "383.4 [MPa]", "393.1 [MPa]", "404.2 [MPa]", "417.6 [MPa]", "434.1 [MPa]", "455.4 [MPa]", "468.6 [MPa]", "483.8 [MPa]"], ["22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]"]])
+matlProp1.EndBatchUpdate()
+Save(Overwrite=True)
+Open(FilePath="C:/Users/Admin/Desktop/15956_AdvSimTec_SoSe_2022/15956.wbpj")

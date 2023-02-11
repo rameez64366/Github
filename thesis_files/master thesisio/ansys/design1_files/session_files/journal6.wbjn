@@ -1,0 +1,134 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS")
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+system1.Delete()
+template1 = GetTemplate(
+    TemplateName="Static Structural",
+    Solver="ANSYS")
+system2 = template1.CreateSystem()
+geometry2 = system2.GetContainer(ComponentName="Geometry")
+geometry2.Edit()
+geometry2.Exit()
+modelComponent1 = system2.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system2.GetContainer(ComponentName="Model")
+model1.Edit()
+model1.Exit()
+favorites1 = EngData.LoadFavoriteItems()
+library1 = EngData.OpenLibrary(
+    Name="General Non-linear Materials",
+    Source="General Materials Non-linear.xml")
+engineeringData1 = system2.GetContainer(ComponentName="Engineering Data")
+matl1 = engineeringData1.ImportMaterial(
+    Name="Stainless Steel NL",
+    Source="General Materials Non-linear.xml")
+matlProp1 = matl1.GetProperty(Name="Elasticity")
+matlProp1.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp1.SetData(
+    Variables=["Young's Modulus"],
+    Values=[["193000 [MPa]"]])
+matlProp2 = matl1.GetProperty(Name="Isotropic Hardening")
+matlProp2.SetVariableProperty(
+    VariableName="Yield Strength",
+    Property="Unit",
+    Value="MPa")
+matlProp2.SetData(
+    Variables=["Yield Strength"],
+    Values=[["210 [MPa]"]])
+matlProp2.SetVariableProperty(
+    VariableName="Tangent Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp2.SetData(
+    Variables=["Tangent Modulus"],
+    Values=[["1800 [MPa]"]])
+matl1.Delete()
+matl2 = engineeringData1.ImportMaterial(
+    Name="Structural Steel NL",
+    Source="General Materials Non-linear.xml")
+matlProp3 = matl2.GetProperty(Name="Elasticity")
+matlProp3.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="hbar")
+matlProp3.SetData(
+    Variables=["Young's Modulus"],
+    Values=[["20000 [hbar]"]])
+matlProp3.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp3.SetData(
+    Variables=["Young's Modulus"],
+    Values=[["200000 [MPa]"]])
+matlProp4 = matl2.GetProperty(Name="Isotropic Hardening")
+matlProp4.SetVariableProperty(
+    VariableName="Yield Strength",
+    Property="Unit",
+    Value="MPa")
+matlProp4.SetData(
+    Variables=["Yield Strength"],
+    Values=[["250 [MPa]"]])
+matlProp4.SetVariableProperty(
+    VariableName="Tangent Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp4.SetData(
+    Variables=["Tangent Modulus"],
+    Values=[["1450 [MPa]"]])
+Save(Overwrite=True)
+modelComponent1.Refresh()
+model1.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+model1.Exit()
+Save(Overwrite=True)
+matlProp3.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="GPa")
+matlProp3.SetData(
+    Variables=["Young's Modulus"],
+    Values=[["200 [GPa]"]])
+matlProp3.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp3.SetData(
+    Variables=["Young's Modulus"],
+    Values=[["200000 [MPa]"]])
+matl3 = engineeringData1.CreateMaterial(Name="non lina")
+matlProp5 = matl3.CreateProperty(
+    Name="Elasticity",
+    Behavior="Isotropic",
+    Qualifiers={"Definition": "", "Behavior": "Isotropic"})
+matlProp5.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp5.SetData(
+    Index=-1,
+    Variables=["Young's Modulus"],
+    Values=[["200000 [MPa]"]])
+matlProp5.SetData(
+    Variables=["Poisson's Ratio"],
+    Values=[["0.3"]])
+matlProp6 = matl3.CreateProperty(
+    Name="Isotropic Hardening",
+    Definition="Multilinear",
+    Qualifiers={"Definition": "Multilinear", "Behavior": ""})
+matlProp6.BeginBatchUpdate()
+matlProp6.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Index=-1,
+    Variables=["Temperature"],
+    Values=[["22 [C]"]])
+matlProp6.EndBatchUpdate()

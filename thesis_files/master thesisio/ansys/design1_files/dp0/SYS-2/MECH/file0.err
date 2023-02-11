@@ -1,0 +1,13 @@
+/COM,ANSYS RELEASE 2022 R2           BUILD 22.2      UP20220516       08:13:44
+
+ *** WARNING ***                         CP =       0.422   TIME= 08:13:44
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** WARNING ***                         CP =     181.234   TIME= 08:16:48
+ A reference force value times the tolerance is used by the              
+ Newton-Raphson method for checking convergence.  The calculated         
+ reference FORCE CONVERGENCE VALUE = 3.159768459E-03 is less than a      
+ threshold.  This threshold is internally calculated.  You can           
+ overwrite it by specifying MINREF on the CNVTOL command.  Check         
+ results carefully.                                                      

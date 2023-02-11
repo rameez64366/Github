@@ -1,0 +1,50 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS 3")
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+model1.Exit()
+Refresh()
+system2 = GetSystem(Name="SYS 4")
+system2.Move(
+    Position="Below",
+    RelativeTo=system1)
+Update()
+system3 = GetSystem(Name="SYS 2")
+system3.Delete()
+system2.Move(
+    Position="Right",
+    RelativeTo=system1)
+Save(Overwrite=True)
+engineeringDataComponent1 = system2.GetComponent(Name="Engineering Data")
+engineeringDataComponent2 = system1.GetComponent(Name="Engineering Data")
+engineeringDataComponent1.ReplaceWithShare(
+    TargetSystem=system2,
+    ComponentToShare=engineeringDataComponent2,
+    SourceSystem=system1)
+geometry1 = system2.GetContainer(ComponentName="Geometry")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+system2.DisplayText = "Simply supported rectangle beam"
+system2.DisplayText = "Simply supported rectangle beam with one concentrated load"
+system2.DisplayText = "Line body-Simply supported rectangle beam with one concentrated load"
+Save(Overwrite=True)
+modelComponent1 = system2.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model2 = system2.GetContainer(ComponentName="Model")
+model2.Edit()
+model2.Exit()
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+Save(Overwrite=True)
+modelComponent1.Refresh()
+model2.Edit()
+model2.Exit()
+Save(Overwrite=True)
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+model2.Edit()
+Save(Overwrite=True)
+model2.Exit()
+Save(Overwrite=True)
