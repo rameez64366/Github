@@ -13,7 +13,7 @@
 /COM,
 ! ****** End   Custom Load Command Snippet ******
 *DIM,_wb_ProjectScratch_dir,string,248
-_wb_ProjectScratch_dir(1) = 'C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr0EE5\'
+_wb_ProjectScratch_dir(1) = 'C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr3258\'
 *DIM,_wb_SolverFiles_dir,string,248
 _wb_SolverFiles_dir(1) = 'C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\design1_files\dp0\SYS-3\MECH\'
 *DIM,_wb_userfiles_dir,string,248

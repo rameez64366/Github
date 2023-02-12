@@ -263,13 +263,33 @@ def stress_strain_graph():
         chart=model.AddChart()
         chart.OutlineSelection=[node_equivalent_stress,equivalent_total_strain]
 
+def parameterize():
+    if Analysis_type=="Non-linear":
+        pass
+    else:
+        load=analysis.Children[3]
+        load.CreateParameter("YComponent")
+        mesh.CreateParameter("ElementSize")
+        mesh.CreateParameter("Nodes")
+        mesh.CreateParameter("Elements")
+        defor=solution.Children[1]
+        defor.CreateParameter("Minimum")
+        equiv=solution.Children[2]
+        equiv.CreateParameter("Maximum")
+        maxpri=solution.Children[3]
+        maxpri.CreateParameter("Maximum")
+        tensl_str=solution.Children[5]
+        tensl_str.CreateParameter("Maximum")
+        shear_str=solution.Children[6]
+        shear_str.CreateParameter("Minimum")
+        maxpri_unavg=solution.Children[7]
+        maxpri_unavg.CreateParameter("Maximum")
 
 Boundary_conditions()
 mesh_creation()            #for stress strain diagram function comment this line after creating a named selection for a node
 analysis_objects()         #comment this line when doing stress-strain post processing function
 solution.Solve(True)       #solve the analysis
 result_analysis()          # for post analysis of results and comment this line for stress-strain graph
-
+parameterize()             #comment this line after parameterising once
 '''after this line of code the node selection has to be made and click solve to generate the stress-strain diagram for the node'''
 #stress_strain_graph()     #uncomment this to invoke the function to generate the stress-strain diagram for the selected node
-

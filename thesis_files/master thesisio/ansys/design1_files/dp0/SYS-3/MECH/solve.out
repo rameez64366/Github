@@ -97,13 +97,13 @@
   DISTRIBUTED MEMORY PARALLEL REQUESTED
        2 PARALLEL PROCESSES REQUESTED WITH SINGLE THREAD PER PROCESS
     TOTAL OF     2 CORES REQUESTED
-  INPUT FILE NAME              = C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr0EE5\dummy.dat
-  OUTPUT FILE NAME             = C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr0EE5\solve.out
+  INPUT FILE NAME              = C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr3258\dummy.dat
+  OUTPUT FILE NAME             = C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr3258\solve.out
   START-UP FILE MODE           = NOREAD
   STOP FILE MODE               = NOREAD
 
  RELEASE= 2022 R2              BUILD= 22.2      UP20220516   VERSION=WINDOWS x64 
- CURRENT JOBNAME=file0  14:58:36  FEB 11, 2023 CP=      0.141
+ CURRENT JOBNAME=file0  08:22:41  FEB 12, 2023 CP=      0.094
 
 
  PARAMETER _DS_PROGRESS =     999.0000000    
@@ -112,11 +112,11 @@
 
 
 
- *** NOTE ***                            CP =       0.312   TIME= 14:58:36
+ *** NOTE ***                            CP =       0.297   TIME= 08:22:42
  The /CONFIG,NOELDB command is not valid in a distributed memory         
  parallel solution.  Command is ignored.                                 
 
- *GET  _WALLSTRT  FROM  ACTI  ITEM=TIME WALL  VALUE=  14.9766667    
+ *GET  _WALLSTRT  FROM  ACTI  ITEM=TIME WALL  VALUE=  8.37833333    
 
  TITLE= 
  design1--Static Structural (A5)                                               
@@ -131,7 +131,7 @@
  SET PARAMETER DIMENSIONS ON  _WB_PROJECTSCRATCH_DIR
   TYPE=STRI  DIMENSIONS=      248        1        1
 
- PARAMETER _WB_PROJECTSCRATCH_DIR(1) = C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr0EE5\
+ PARAMETER _WB_PROJECTSCRATCH_DIR(1) = C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr3258\
 
  SET PARAMETER DIMENSIONS ON  _WB_SOLVERFILES_DIR
   TYPE=STRI  DIMENSIONS=      248        1        1
@@ -157,7 +157,7 @@
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE 2022 R2          22.2     ***
  Ansys Mechanical Enterprise Academic Student      
- 00000000  VERSION=WINDOWS x64   14:58:36  FEB 11, 2023 CP=      0.312
+ 00000000  VERSION=WINDOWS x64   08:22:42  FEB 12, 2023 CP=      0.297
 
  design1--Static Structural (A5)                                               
 
@@ -180,7 +180,7 @@
  *********** Define Force Using Surface Effect Elements ***********
 
 
- ***** ROUTINE COMPLETED *****  CP =         0.406
+ ***** ROUTINE COMPLETED *****  CP =         0.391
 
 
  --- Number of total nodes = 9065
@@ -191,7 +191,7 @@
  --- Number of condensed parts = 0
  --- Number of total elements = 1604
 
- *GET  _WALLBSOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  14.9766667    
+ *GET  _WALLBSOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  8.37833333    
  ****************************************************************************
  *************************    SOLUTION       ********************************
  ****************************************************************************
@@ -301,21 +301,21 @@
 
  *ENDIF
 
- *** NOTE ***                            CP =       0.469   TIME= 14:58:36
+ *** NOTE ***                            CP =       0.422   TIME= 08:22:42
  The automatic domain decomposition logic has selected the MESH domain   
  decomposition method with 2 processes per solution.                     
 
  *****  MAPDL SOLVE    COMMAND  *****
 
- *** WARNING ***                         CP =       0.469   TIME= 14:58:36
+ *** WARNING ***                         CP =       0.422   TIME= 08:22:42
  Element shape checking is currently inactive.  Issue SHPP,ON or         
  SHPP,WARN to reactivate, if desired.                                    
 
- *** NOTE ***                            CP =       0.516   TIME= 14:58:36
+ *** NOTE ***                            CP =       0.453   TIME= 08:22:42
  The model data was checked and warning messages were found.             
   Please review output or errors file (                                  
  C:\Users\Admin\PycharmProjects\Github\thesis_files\master               
- thesisio\ansys\_ProjectScratch\Scr0EE5\file0.err ) for these warning    
+ thesisio\ansys\_ProjectScratch\Scr3258\file0.err ) for these warning    
  messages.                                                               
 
  *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
@@ -328,7 +328,7 @@
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE 2022 R2          22.2     ***
  Ansys Mechanical Enterprise Academic Student      
- 00000000  VERSION=WINDOWS x64   14:58:36  FEB 11, 2023 CP=      0.516
+ 00000000  VERSION=WINDOWS x64   08:22:42  FEB 12, 2023 CP=      0.453
 
  design1--Static Structural (A5)                                               
 
@@ -344,16 +344,16 @@
       TOLERANCE. . . . . . . . . . . . . . . . . . 1.00000E-08
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
- *** WARNING ***                         CP =       0.516   TIME= 14:58:36
+ *** WARNING ***                         CP =       0.484   TIME= 08:22:42
  Material number 2 (used by element 3233) should normally have at least  
  one MP or one TB type command associated with it.  Output of energy by  
  material may not be available.                                          
 
- *** NOTE ***                            CP =       0.516   TIME= 14:58:36
+ *** NOTE ***                            CP =       0.484   TIME= 08:22:42
  The step data was checked and warning messages were found.              
   Please review output or errors file (                                  
  C:\Users\Admin\PycharmProjects\Github\thesis_files\master               
- thesisio\ansys\_ProjectScratch\Scr0EE5\file0.err ) for these warning    
+ thesisio\ansys\_ProjectScratch\Scr3258\file0.err ) for these warning    
  messages.                                                               
 
   
@@ -390,7 +390,7 @@
  SOLUTION MONITORING INFO IS WRITTEN TO FILE= file.mntr                                                                                                                                                                                                                                                           
 
 
- *** NOTE ***                            CP =       0.672   TIME= 14:58:36
+ *** NOTE ***                            CP =       0.641   TIME= 08:22:42
  The PCG solver has automatically set the level of difficulty for this   
  model to 1.                                                             
 
@@ -401,9 +401,9 @@
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      1600  SOLID186      0.344   0.000215
+        1      1600  SOLID186      0.312   0.000195
         2         4  SURF156       0.000   0.000000
- Time at end of element matrix formulation CP = 0.921875.                
+ Time at end of element matrix formulation CP = 0.875.                   
  Iteration=     5 Ratio=  0.275858     Limit=  1.000000E-08 Wall=     0.0
  Iteration=    35 Ratio=  7.953778E-04 Limit=  1.000000E-08 Wall=     0.1
  Iteration=    70 Ratio=  1.370146E-06 Limit=  1.000000E-08 Wall=     0.3
@@ -417,8 +417,8 @@
    LEVEL OF CONVERGENCE=           1
    CALCULATED NORM     = 0.88846E-08
    SPECIFIED TOLERANCE = 0.10000E-07
-   TOTAL CPU TIME (sec)=        0.53
-   TOTAL WALL TIME(sec)=        0.55
+   TOTAL CPU TIME (sec)=        0.56
+   TOTAL WALL TIME(sec)=        0.56
    TOTAL MEMORY (GB)   =        0.02
 
 
@@ -431,7 +431,7 @@
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      1600  SOLID186      0.016   0.000010
+        1      1600  SOLID186      0.047   0.000029
         2         4  SURF156       0.000   0.000000
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =  0.333333E-01     TIME INC =  0.333333E-01  NEW TRIANG MATRIX
@@ -534,7 +534,7 @@
  ****************************************************
  *************** FINISHED SOLVE FOR LS 1 *************
 
- *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  14.9836111    
+ *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  8.38527778    
 
  PRINTOUT RESUMED BY /GOP
 
@@ -543,13 +543,13 @@
  FINISH SOLUTION PROCESSING
 
 
- ***** ROUTINE COMPLETED *****  CP =        24.375
+ ***** ROUTINE COMPLETED *****  CP =        25.188
 
 
 
  *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE 2022 R2          22.2     ***
  Ansys Mechanical Enterprise Academic Student      
- 00000000  VERSION=WINDOWS x64   14:59:01  FEB 11, 2023 CP=     24.391
+ 00000000  VERSION=WINDOWS x64   08:23:08  FEB 12, 2023 CP=     25.203
 
  design1--Static Structural (A5)                                               
 
@@ -557,7 +557,7 @@
 
           ***** MAPDL RESULTS INTERPRETATION (POST1) *****
 
- *** NOTE ***                            CP =      24.391   TIME= 14:59:01
+ *** NOTE ***                            CP =      25.203   TIME= 08:23:08
  Reading results into the database (SET command) will update the current 
  displacement and force boundary conditions in the database with the     
  values from the results file for that load set.  Note that any          
@@ -575,25 +575,25 @@
  EXIT THE MAPDL POST1 DATABASE PROCESSOR
 
 
- ***** ROUTINE COMPLETED *****  CP =        24.391
+ ***** ROUTINE COMPLETED *****  CP =        25.203
 
 
 
  PRINTOUT RESUMED BY /GOP
 
- *GET  _WALLDONE  FROM  ACTI  ITEM=TIME WALL  VALUE=  14.9836111    
+ *GET  _WALLDONE  FROM  ACTI  ITEM=TIME WALL  VALUE=  8.38555556    
 
  PARAMETER _PREPTIME =     0.000000000    
 
  PARAMETER _SOLVTIME =     25.00000000    
 
- PARAMETER _POSTTIME =     0.000000000    
+ PARAMETER _POSTTIME =     1.000000000    
 
- PARAMETER _TOTALTIM =     25.00000000    
+ PARAMETER _TOTALTIM =     26.00000000    
 
  *GET  _DLBRATIO  FROM  ACTI  ITEM=SOLU DLBR  VALUE=  1.00249377    
 
- *GET  _COMBTIME  FROM  ACTI  ITEM=SOLU COMB  VALUE= 0.290859400    
+ *GET  _COMBTIME  FROM  ACTI  ITEM=SOLU COMB  VALUE= 0.247407200    
 
  *GET  _SSMODE   FROM  ACTI  ITEM=SOLU SSMM  VALUE=  0.00000000    
 
@@ -610,7 +610,7 @@
  --- Total number of nodes = 9065
  --- Total number of elements = 1604
  --- Element load balance ratio = 1.00249377
- --- Time to combine distributed files = 0.2908594
+ --- Time to combine distributed files = 0.2474072
  --- Sparse memory mode = 0
  --- Number of DOF = 27150
 
@@ -623,7 +623,7 @@
 +--------------------- M A P D L   S T A T I S T I C S ------------------------+
 
 Release: 2022 R2            Build: 22.2       Update: UP20220516   Platform: WINDOWS x64 
-Date Run: 02/11/2023   Time: 14:59     Process ID: 8808
+Date Run: 02/12/2023   Time: 08:23     Process ID: 14288
 Operating System: Windows 10  (Build: 19045)
 
 Processor Model: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
@@ -650,25 +650,25 @@ Input File: dummy.dat
 
   Core                Machine Name   Working Directory
  -----------------------------------------------------
-     0             DESKTOP-H7DA5IC   C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr0EE5
-     1             DESKTOP-H7DA5IC   C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr0EE5
+     0             DESKTOP-H7DA5IC   C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr3258
+     1             DESKTOP-H7DA5IC   C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\ansys\_ProjectScratch\Scr3258
  
-Latency time from master to core     1 =    9.021 microseconds
+Latency time from master to core     1 =   64.360 microseconds
  
-Communication speed from master to core     1 =  1010.93 MB/sec
+Communication speed from master to core     1 =  1511.11 MB/sec
 
-Total CPU time for main thread                    :       24.5 seconds
-Total CPU time summed for all threads             :       24.9 seconds
+Total CPU time for main thread                    :       25.5 seconds
+Total CPU time summed for all threads             :       25.6 seconds
 
-Elapsed time spent obtaining a license            :        0.3 seconds
-Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+Elapsed time spent obtaining a license            :        0.5 seconds
+Elapsed time spent pre-processing model (/PREP7)  :        0.1 seconds
 Elapsed time spent solution - preprocessing       :        0.1 seconds
-Elapsed time spent computing solution             :       24.6 seconds
-Elapsed time spent solution - postprocessing      :        0.3 seconds
+Elapsed time spent computing solution             :       25.5 seconds
+Elapsed time spent solution - postprocessing      :        0.2 seconds
 Elapsed time spent post-processing model (/POST1) :        0.0 seconds
  
 Equation solver used                              :            PCG (symmetric)
-Equation solver computational rate                :        2.2 Gflops
+Equation solver computational rate                :        3.1 Gflops
 
 Sum of memory used on all processes               :      119.0 MB
 Sum of memory allocated on all processes          :     3136.0 MB
@@ -695,7 +695,7 @@ Total amount of I/O read from disk                :        0.2 GB
  |                                                                           |
  |---------------------------------------------------------------------------|
  |                                                                           |
- |        CP Time      (sec) =         24.891       Time  =  14:59:06        |
- |        Elapsed Time (sec) =         32.000       Date  =  02/11/2023      |
+ |        CP Time      (sec) =         25.594       Time  =  08:23:08        |
+ |        Elapsed Time (sec) =         28.000       Date  =  02/12/2023      |
  |                                                                           |
  *---------------------------------------------------------------------------*
