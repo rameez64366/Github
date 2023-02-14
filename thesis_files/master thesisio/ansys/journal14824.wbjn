@@ -1,0 +1,49 @@
+﻿# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+Reset()
+Open(FilePath="C:/Users/Admin/PycharmProjects/Github/thesis_files/master thesisio/ansys/design1.wbpj")
+Extensions.UnloadExtension(
+    Id="5e7e01a6-8601-11e8-9f8c-28f10e13ffe6",
+    Version="2022.2",
+    Format="Binary")
+Extensions.UnloadExtension(
+    Id="5f463412-bd3e-484b-87e7-cbc0a665e474",
+    Version="2022.2",
+    Format="Binary")
+Extensions.UnloadExtension(
+    Id="20180725-3f81-49eb-9f31-41364844c769",
+    Version="2022.2",
+    Format="Binary")
+Extensions.UnloadExtension(
+    Id="f3e3da52-fb02-4910-8cc9-980efd047bc6",
+    Version="2022.2",
+    Format="Binary")
+designPoint1 = Parameters.GetDesignPoint(Name="0")
+backgroundSession1 = UpdateAllDesignPoints(DesignPoints=[designPoint1])
+designPoint2 = Parameters.CreateDesignPoint()
+parameter1 = Parameters.GetParameter(Name="P12")
+designPoint2.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="40")
+parameter2 = Parameters.GetParameter(Name="P26")
+designPoint2.SetParameterExpression(
+    Parameter=parameter2,
+    Expression='"Structural Steel"')
+backgroundSession2 = UpdateAllDesignPoints(DesignPoints=[designPoint2])
+designPoint3 = designPoint1.Duplicate()
+designPoint2.Delete()
+designPoint3.CopyParameterExpressions(ToDesignPoint=designPoint1)
+designPoint3.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="40")
+backgroundSession3 = UpdateAllDesignPoints(DesignPoints=[designPoint3])
+Parameters.SetBaseDesignPoint(DesignPoint=designPoint3)
+Parameters.SetBaseDesignPoint(DesignPoint=designPoint1)
+Parameters.SetBaseDesignPoint(DesignPoint=designPoint3)
+system1 = GetSystem(Name="SYS")
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+model1.Exit()
+Parameters.SetBaseDesignPoint(DesignPoint=designPoint1)
+backgroundSession4 = UpdateAllDesignPoints(DesignPoints=[designPoint1, designPoint3])

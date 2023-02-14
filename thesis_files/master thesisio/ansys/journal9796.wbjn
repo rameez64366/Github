@@ -1,0 +1,111 @@
+﻿# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+Reset()
+Open(FilePath="C:/Users/Admin/PycharmProjects/Github/thesis_files/master thesisio/ansys/design1.wbpj")
+Extensions.UnloadExtension(
+    Id="5e7e01a6-8601-11e8-9f8c-28f10e13ffe6",
+    Version="2022.2",
+    Format="Binary")
+Extensions.UnloadExtension(
+    Id="5f463412-bd3e-484b-87e7-cbc0a665e474",
+    Version="2022.2",
+    Format="Binary")
+Extensions.UnloadExtension(
+    Id="20180725-3f81-49eb-9f31-41364844c769",
+    Version="2022.2",
+    Format="Binary")
+Extensions.UnloadExtension(
+    Id="f3e3da52-fb02-4910-8cc9-980efd047bc6",
+    Version="2022.2",
+    Format="Binary")
+system1 = GetSystem(Name="SYS")
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+designPoint1 = Parameters.CreateDesignPoint()
+parameter1 = Parameters.GetParameter(Name="P12")
+designPoint1.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="40")
+designPoint2 = Parameters.GetDesignPoint(Name="0")
+parameter2 = Parameters.GetParameter(Name="P30")
+designPoint2.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="20 [mm]")
+designPoint3 = Parameters.CreateDesignPoint()
+designPoint3.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="20")
+parameter3 = Parameters.GetParameter(Name="P13")
+designPoint3.SetParameterExpression(
+    Parameter=parameter3,
+    Expression="60")
+parameter4 = Parameters.GetParameter(Name="P23")
+designPoint3.SetParameterExpression(
+    Parameter=parameter4,
+    Expression="20 [mm]")
+parameter5 = Parameters.GetParameter(Name="P24")
+designPoint3.SetParameterExpression(
+    Parameter=parameter5,
+    Expression="60 [mm]")
+parameter6 = Parameters.GetParameter(Name="P25")
+designPoint3.SetParameterExpression(
+    Parameter=parameter6,
+    Expression="20")
+parameter7 = Parameters.GetParameter(Name="P26")
+designPoint3.SetParameterExpression(
+    Parameter=parameter7,
+    Expression="60")
+parameter8 = Parameters.GetParameter(Name="P38")
+designPoint2.SetParameterExpression(
+    Parameter=parameter8,
+    Expression="20 [mm]")
+designPoint3.SetParameterExpression(
+    Parameter=parameter8,
+    Expression="20 [mm]")
+designPoint4 = Parameters.CreateDesignPoint()
+designPoint4.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="20")
+designPoint4.SetParameterExpression(
+    Parameter=parameter3,
+    Expression="60")
+designPoint4.SetParameterExpression(
+    Parameter=parameter4,
+    Expression="20 [mm]")
+designPoint4.SetParameterExpression(
+    Parameter=parameter5,
+    Expression="60 [mm]")
+designPoint4.SetParameterExpression(
+    Parameter=parameter6,
+    Expression="20")
+designPoint4.SetParameterExpression(
+    Parameter=parameter7,
+    Expression="60")
+designPoint4.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="10 [mm]")
+designPoint5 = Parameters.CreateDesignPoint()
+designPoint5.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="40")
+parameter9 = Parameters.GetParameter(Name="P15")
+designPoint5.SetParameterExpression(
+    Parameter=parameter9,
+    Expression="250")
+parameter10 = Parameters.GetParameter(Name="P28")
+designPoint5.SetParameterExpression(
+    Parameter=parameter10,
+    Expression="250")
+designPoint5.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="10 [mm]")
+designPoint5.SetParameterExpression(
+    Parameter=parameter8,
+    Expression="10 [mm]")
+designPoint4.SetParameterExpression(
+    Parameter=parameter8,
+    Expression="10 [mm]")
+backgroundSession1 = UpdateAllDesignPoints(DesignPoints=[designPoint2, designPoint3, designPoint4, designPoint5])
+Save(Overwrite=True)

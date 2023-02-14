@@ -10,10 +10,10 @@ solution=analysis.Solution
 ###end########
 
 #########################Important to confirm few information before running the script############
-
 '''make sure to input multilinear isotropic hardening behaviour to the material in case of non-linear analysis and specify the analysis type'''
 ###material list and assignment##
 material_list=model.Materials.Children  ###list of material
+
 geom.Children[0].Children[0].Material=model.Materials.Children[1].Name      #setting material to the first body in list of geometry
 
 #selection of analysis type linear or non-linear
@@ -27,7 +27,7 @@ height=geom.LengthY
 breadth=geom.LengthZ
 
 ##in case of 1 concentrated load
-a=Extrusion_length/2  ### units are in m
+a=Extrusion_length-Quantity(150,"mm")  ### units are in m
 concentrated_load_value=5000
 
 ###coordinate system created in Spaceclaim
@@ -61,38 +61,32 @@ if len(construction_geometry.Children)==0:
     #adding shear path
     shear_path=construction_geometry.AddPath()
     shear_path.StartCoordinateSystem=list_of_coordinates[1]
-    shear_path.StartXCoordinate=Quantity(str(a/2))
+    shear_path.StartXCoordinate=Quantity(str(Extrusion_length-100))
     shear_path.EndCoordinateSystem=list_of_coordinates[3]
-    shear_path.EndXCoordinate = Quantity(str(a/2))
+    shear_path.EndXCoordinate = Quantity(str(Extrusion_length-100))
     shear_path.Name="shear path"
     
 else:
     pass
 
-def mesh_creation():
-    ##Mesh creation##
-    mesh.ElementSize =Quantity("10 [mm]")
-    #size=mesh.CreateParameter("ElementSize")      #paramterizing mesh size
-    mesh.GenerateMesh()    
-    
 ###Adding boundary conditions
 def Boundary_conditions():
-    if Analysis_type=="Non-linear":
-        analysis_setting=analysis.Children[0]                        #Turning on large deflection and other options to accurately capture stress-strain relation
-        analysis_setting.NumberOfSteps=2
-        analysis_setting.CurrentStepNumber=1
-        analysis_setting.AutomaticTimeStepping=AutomaticTimeStepping.On
-        analysis_setting.InitialSubsteps=30
-        analysis_setting.MinimumSubsteps=30
-        analysis_setting.MaximumSubsteps=100
-        analysis_setting.LargeDeflection=True
-        concentrated_loadVal=4*concentrated_load_value            #setting load large enough to cause plastic deformation
+    # if Analysis_type=="Non-linear":
+    #     analysis_setting=analysis.Children[0]                        #Turning on large deflection and other options to accurately capture stress-strain relation
+    #     analysis_setting.NumberOfSteps=2
+    #     analysis_setting.CurrentStepNumber=1
+    #     analysis_setting.AutomaticTimeStepping=AutomaticTimeStepping.On
+    #     analysis_setting.InitialSubsteps=30
+    #     analysis_setting.MinimumSubsteps=30
+    #     analysis_setting.MaximumSubsteps=100
+    #     analysis_setting.LargeDeflection=True
+    #     concentrated_loadVal=4*concentrated_load_value            #setting load large enough to cause plastic deformation
 
-    else:
-        analysis_setting=analysis.Children[0]
-        analysis_setting.NumberOfSteps=1
-        analysis_setting.AutomaticTimeStepping=AutomaticTimeStepping.Off
-        analysis_setting.LargeDeflection=False
+    # else:
+    #     analysis_setting=analysis.Children[0]
+    #     analysis_setting.NumberOfSteps=1
+    #     analysis_setting.AutomaticTimeStepping=AutomaticTimeStepping.Off
+    #     analysis_setting.LargeDeflection=False
     
     if len(analysis.Children) == 2:
         #adding fixed support on left end of the beam
@@ -285,11 +279,20 @@ def parameterize():
         maxpri_unavg=solution.Children[7]
         maxpri_unavg.CreateParameter("Maximum")
 
+
+#mesh.ElementSize =Quantity("10 [mm]")          #comment after first script run
+mesh.GenerateMesh()    
 Boundary_conditions()
-mesh_creation()            #for stress strain diagram function comment this line after creating a named selection for a node
+
 analysis_objects()         #comment this line when doing stress-strain post processing function
 solution.Solve(True)       #solve the analysis
 result_analysis()          # for post analysis of results and comment this line for stress-strain graph
 parameterize()             #comment this line after parameterising once
 '''after this line of code the node selection has to be made and click solve to generate the stress-strain diagram for the node'''
 #stress_strain_graph()     #uncomment this to invoke the function to generate the stress-strain diagram for the selected node
+
+
+
+
+
+

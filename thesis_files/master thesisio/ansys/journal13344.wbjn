@@ -19,66 +19,20 @@ Extensions.UnloadExtension(
     Id="f3e3da52-fb02-4910-8cc9-980efd047bc6",
     Version="2022.2",
     Format="Binary")
-system1 = GetSystem(Name="SYS")
+system1 = GetSystem(Name="SYS 1")
 geometry1 = system1.GetContainer(ComponentName="Geometry")
-geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Edit()
 geometry1.Exit()
+geometryComponent1 = system1.GetComponent(Name="Geometry")
+system2 = GetSystem(Name="SYS 2")
+geometryComponent2 = system2.GetComponent(Name="Geometry")
+geometryComponent1.ReplaceWithShare(
+    TargetSystem=system1,
+    ComponentToShare=geometryComponent2,
+    SourceSystem=system2)
 modelComponent1 = system1.GetComponent(Name="Model")
 modelComponent1.Refresh()
 model1 = system1.GetContainer(ComponentName="Model")
 model1.Edit()
 model1.Exit()
-Save(Overwrite=True)
-designPoint1 = Parameters.GetDesignPoint(Name="0")
-parameter1 = Parameters.GetParameter(Name="P12")
-designPoint1.SetParameterExpression(
-    Parameter=parameter1,
-    Expression="60")
-parameter2 = Parameters.GetParameter(Name="P13")
-designPoint1.SetParameterExpression(
-    Parameter=parameter2,
-    Expression="20")
-parameter3 = Parameters.GetParameter(Name="P14")
-designPoint1.SetParameterExpression(
-    Parameter=parameter3,
-    Expression="1000")
-parameter4 = Parameters.GetParameter(Name="P15")
-designPoint1.SetParameterExpression(
-    Parameter=parameter4,
-    Expression="500")
-Update()
-geometry1.Edit(IsSpaceClaimGeometry=True)
-designPoint1.SetParameterExpression(
-    Parameter=parameter1,
-    Expression="20")
-designPoint1.SetParameterExpression(
-    Parameter=parameter2,
-    Expression="60")
-designPoint2 = Parameters.GetDesignPoint(Name="1")
-designPoint2.Delete()
-designPoint3 = Parameters.GetDesignPoint(Name="2")
-designPoint3.Delete()
-designPoint4 = Parameters.GetDesignPoint(Name="3")
-designPoint4.Delete()
-Refresh()
-geometry1.Exit()
-Save(Overwrite=True)
-Refresh()
-geometry1.Edit(IsSpaceClaimGeometry=True)
-geometry1.Exit()
-designPoint1.SetParameterExpression(
-    Parameter=parameter1,
-    Expression="40")
-designPoint1.SetParameterExpression(
-    Parameter=parameter2,
-    Expression="40")
-Refresh()
-geometry1.Edit(IsSpaceClaimGeometry=True)
-geometry1.Exit()
-Save(Overwrite=True)
-model1.Edit()
-Save(Overwrite=True)
-model1.Exit()
-Save(Overwrite=True)
-Save(Overwrite=True)
-Save(Overwrite=True)
+geometryComponent1.DeleteShare(System=system1)

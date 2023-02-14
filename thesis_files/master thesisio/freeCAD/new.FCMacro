@@ -1,0 +1,302 @@
+
+import FreeCAD
+import Part,PartGui
+import Part
+import SplitFeatures
+import BOPTools.SplitFeatures
+import commands
+import Fem
+
+# Gui.runCommand('Std_DlgMacroRecord',0)
+### Begin command Std_New
+App.newDocument("Unnamed")
+# App.setActiveDocument("Unnamed")
+# App.ActiveDocument=App.getDocument("Unnamed")
+# Gui.ActiveDocument=Gui.getDocument("Unnamed")
+# Gui.activeDocument().activeView().viewDefaultOrientation()
+### End command Std_New
+# App.setActiveDocument("Unnamed1")
+# App.ActiveDocument=App.getDocument("Unnamed1")
+# Gui.ActiveDocument=Gui.getDocument("Unnamed1")
+# Gui.Selection.addSelection('Unnamed1','CantileverLine')
+# Gui.ActiveDocument.setEdit(App.getDocument('Unnamed1').getObject('CantileverLine'), 0)
+from FreeCAD import Base
+# Gui.getDocument('Unnamed1').resetEdit()
+# App.setActiveDocument("Unnamed")
+# App.ActiveDocument=App.getDocument("Unnamed")
+# Gui.ActiveDocument=Gui.getDocument("Unnamed")
+### Begin command Std_Workbench
+# Gui.activateWorkbench("PartWorkbench")
+### End command Std_Workbench
+# App.setActiveDocument("Unnamed1")
+# App.ActiveDocument=App.getDocument("Unnamed1")
+# Gui.ActiveDocument=Gui.getDocument("Unnamed1")
+# Gui.ActiveDocument.setEdit(App.getDocument('Unnamed1').getObject('CantileverLine'), 0)
+from FreeCAD import Base
+# Gui.getDocument('Unnamed1').resetEdit()
+# App.setActiveDocument("Unnamed")
+# App.ActiveDocument=App.getDocument("Unnamed")
+# Gui.ActiveDocument=Gui.getDocument("Unnamed")
+### Begin command Part_Primitives
+from FreeCAD import Base
+### End command Part_Primitives
+App.ActiveDocument.addObject("Part::Line","Line")
+App.ActiveDocument.Line.X1=0.00
+App.ActiveDocument.Line.Y1=0.00
+App.ActiveDocument.Line.Z1=0.00
+App.ActiveDocument.Line.X2=500.00
+App.ActiveDocument.Line.Y2=0.00
+App.ActiveDocument.Line.Z2=0.00
+App.ActiveDocument.Line.Placement=App.Placement(App.Vector(0.00,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
+App.ActiveDocument.Line.Label='Line'
+
+# Object Line created at document root
+App.ActiveDocument.recompute()
+# Gui.SendMsgToActiveView("ViewFit")
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','Line')
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','Line')
+# Gui.Selection.clearSelection()
+### Begin command Part_Primitives
+from FreeCAD import Base
+### End command Part_Primitives
+App.ActiveDocument.addObject("Part::Line","Line001")
+App.ActiveDocument.Line001.X1=500.00
+App.ActiveDocument.Line001.Y1=0.00
+App.ActiveDocument.Line001.Z1=0.00
+App.ActiveDocument.Line001.X2=1000.00
+App.ActiveDocument.Line001.Y2=0.00
+App.ActiveDocument.Line001.Z2=0.00
+App.ActiveDocument.Line001.Placement=App.Placement(App.Vector(0.00,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
+App.ActiveDocument.Line001.Label='Line'
+
+# Object Line001 created at document root
+App.ActiveDocument.recompute()
+# Gui.SendMsgToActiveView("ViewFit")
+App.ActiveDocument.addObject("Part::Line","Line002")
+App.ActiveDocument.Line002.X1=500.00
+App.ActiveDocument.Line002.Y1=0.00
+App.ActiveDocument.Line002.Z1=0.00
+App.ActiveDocument.Line002.X2=1000.00
+App.ActiveDocument.Line002.Y2=0.00
+App.ActiveDocument.Line002.Z2=0.00
+App.ActiveDocument.Line002.Placement=App.Placement(App.Vector(0.00,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
+App.ActiveDocument.Line002.Label='Line'
+
+# Object Line002 created at document root
+App.ActiveDocument.recompute()
+# Gui.SendMsgToActiveView("ViewFit")
+# Gui.Selection.addSelection('Unnamed','Line002')
+### Begin command Std_Delete
+App.getDocument('Unnamed').removeObject('Line002')
+App.getDocument('Unnamed').recompute()
+### End command Std_Delete
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','Line001')
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','Line')
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','Line001')
+# Gui.Selection.addSelection('Unnamed','Line')
+### Begin command Part_CompSplitFeatures
+j = BOPTools.SplitFeatures.makeBooleanFragments(name='BooleanFragments')
+j.Objects = [App.ActiveDocument.Line001, App.ActiveDocument.Line]
+j.Mode = 'Standard'
+j.Proxy.execute(j)
+j.purgeTouched()
+for obj in j.ViewObject.Proxy.claimChildren():
+    obj.ViewObject.hide()
+### End command Part_CompSplitFeatures
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','BooleanFragments')
+FreeCAD.getDocument('Unnamed').getObject('BooleanFragments').Mode = u"CompSolid"
+
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','BooleanFragments')
+FreeCAD.getDocument('Unnamed').getObject('BooleanFragments').Mode = u"Standard"
+
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','BooleanFragments')
+# Gui.Selection.clearSelection()
+### Begin command Part_Primitives
+from FreeCAD import Base
+### End command Part_Primitives
+App.ActiveDocument.addObject("Part::Line","Line002")
+App.ActiveDocument.Line002.X1=0.00
+App.ActiveDocument.Line002.Y1=100.00
+App.ActiveDocument.Line002.Z1=100.00
+App.ActiveDocument.Line002.X2=0.00
+App.ActiveDocument.Line002.Y2=100.00
+App.ActiveDocument.Line002.Z2=200.00
+App.ActiveDocument.Line002.Placement=App.Placement(App.Vector(0.00,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
+App.ActiveDocument.Line002.Label='Line'
+
+# Object Line002 created at document root
+App.ActiveDocument.recompute()
+# Gui.SendMsgToActiveView("ViewFit")
+
+ObjectsFem.makeAnalysis(FreeCAD.ActiveDocument, 'Analysis')
+FemGui.setActiveAnalysis(FreeCAD.ActiveDocument.ActiveObject)
+ObjectsFem.makeSolverCalculixCcxTools(FreeCAD.ActiveDocument)
+FemGui.getActiveAnalysis().addObject(FreeCAD.ActiveDocument.ActiveObject)
+### End command FEM_Analysis
+### Begin command FEM_ElementGeometry1D
+FemGui.getActiveAnalysis().addObject(ObjectsFem.makeElementGeometry1D(FreeCAD.ActiveDocument))
+FreeCADGui.ActiveDocument.setEdit(FreeCAD.ActiveDocument.ActiveObject.Name)
+### End command FEM_ElementGeometry1D
+# GuiObject('ElementGeometry1D').ViewObject.doubleClicked()
+# Gui.Selection.addSelection('Unnamed','BooleanFragments','Edge2',381.764,0,0)
+# Gui.Selection.clearSelection()
+#
+FemGui.getActiveAnalysis().addObject(ObjectsFem.makeMaterialSolid(FreeCAD.ActiveDocument))
+FreeCADGui.ActiveDocument.setEdit(FreeCAD.ActiveDocument.ActiveObject.Name)
+### End command FEM_MaterialSolid
+# Gui.Selection.clearSelection()
+### Begin command Std_ViewTop
+# Gui.activeDocument().activeView().viewTop()
+### End command Std_ViewTop
+### Begin command Std_ViewFront
+# Gui.activeDocument().activeView().viewFront()
+
+from FreeCAD import Base
+App.getDocument("Unnamed").Line002.X1=0
+App.getDocument("Unnamed").Line002.Y1=1e+02
+App.getDocument("Unnamed").Line002.Z1=1e+02
+App.getDocument("Unnamed").Line002.X2=0
+App.getDocument("Unnamed").Line002.Y2=2e+02
+App.getDocument("Unnamed").Line002.Z2=1e+02
+App.getDocument("Unnamed").Line002.Placement=App.Placement(App.Vector(0.00,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
+
+# Gui.getDocument('Unnamed').resetEdit()
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','MaterialSolid')
+### Begin command FEM_ConstraintDisplacement
+App.activeDocument().addObject("Fem::ConstraintDisplacement","ConstraintDisplacement")
+App.activeDocument().ConstraintDisplacement.Scale = 1
+App.activeDocument().Analysis.addObject(App.activeDocument().ConstraintDisplacement)
+for amesh in App.activeDocument().Objects:
+    if "ConstraintDisplacement" == amesh.Name:
+        amesh.ViewObject.Visibility = True
+    elif "Mesh" in amesh.TypeId:
+        aparttoshow = amesh.Name.replace("_Mesh","")
+        for apart in App.activeDocument().Objects:
+            if aparttoshow == apart.Name:
+                apart.ViewObject.Visibility = True
+        amesh.ViewObject.Visibility = False
+
+App.ActiveDocument.recompute()
+# Gui.activeDocument().setEdit('ConstraintDisplacement')
+### End command FEM_ConstraintDisplacement
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','BooleanFragments','Vertex3')
+App.ActiveDocument.ConstraintDisplacement.xDisplacement = 0.000000
+App.ActiveDocument.ConstraintDisplacement.yDisplacement = 0.000000
+App.ActiveDocument.ConstraintDisplacement.zDisplacement = 0.000000
+App.ActiveDocument.ConstraintDisplacement.xRotation = 0.000000
+App.ActiveDocument.ConstraintDisplacement.yRotation = 0.000000
+App.ActiveDocument.ConstraintDisplacement.zRotation = 0.000000
+App.ActiveDocument.ConstraintDisplacement.xFree = False
+App.ActiveDocument.ConstraintDisplacement.xFix = True
+App.ActiveDocument.ConstraintDisplacement.yFree = False
+App.ActiveDocument.ConstraintDisplacement.yFix = True
+App.ActiveDocument.ConstraintDisplacement.zFree = False
+App.ActiveDocument.ConstraintDisplacement.zFix = False
+App.ActiveDocument.ConstraintDisplacement.rotxFree = False
+App.ActiveDocument.ConstraintDisplacement.rotxFix = True
+App.ActiveDocument.ConstraintDisplacement.rotyFree = True
+App.ActiveDocument.ConstraintDisplacement.rotyFix = False
+App.ActiveDocument.ConstraintDisplacement.rotzFree = True
+App.ActiveDocument.ConstraintDisplacement.rotzFix = False
+App.ActiveDocument.ConstraintDisplacement.Scale = 1
+App.ActiveDocument.ConstraintDisplacement.References = [(App.ActiveDocument.BooleanFragments,"Vertex3")]
+App.ActiveDocument.recompute()
+# Gui.activeDocument().resetEdit()
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','Analysis')
+### Begin command FEM_ConstraintDisplacement
+App.activeDocument().addObject("Fem::ConstraintDisplacement","ConstraintDisplacement001")
+App.activeDocument().ConstraintDisplacement001.Scale = 1
+App.activeDocument().Analysis.addObject(App.activeDocument().ConstraintDisplacement001)
+for amesh in App.activeDocument().Objects:
+    if "ConstraintDisplacement001" == amesh.Name:
+        amesh.ViewObject.Visibility = True
+    elif "Mesh" in amesh.TypeId:
+        aparttoshow = amesh.Name.replace("_Mesh","")
+        for apart in App.activeDocument().Objects:
+            if aparttoshow == apart.Name:
+                apart.ViewObject.Visibility = True
+        amesh.ViewObject.Visibility = False
+
+App.ActiveDocument.recompute()
+# Gui.activeDocument().setEdit('ConstraintDisplacement001')
+### End command FEM_ConstraintDisplacement
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','BooleanFragments','Vertex2',1000,0,0)
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','BooleanFragments','Vertex2',1000,0,0)
+App.ActiveDocument.ConstraintDisplacement001.xDisplacement = 0.000000
+App.ActiveDocument.ConstraintDisplacement001.yDisplacement = 0.000000
+App.ActiveDocument.ConstraintDisplacement001.zDisplacement = 0.000000
+App.ActiveDocument.ConstraintDisplacement001.xRotation = 0.000000
+App.ActiveDocument.ConstraintDisplacement001.yRotation = 0.000000
+App.ActiveDocument.ConstraintDisplacement001.zRotation = 0.000000
+App.ActiveDocument.ConstraintDisplacement001.xFree = True
+App.ActiveDocument.ConstraintDisplacement001.xFix = False
+App.ActiveDocument.ConstraintDisplacement001.yFree = False
+App.ActiveDocument.ConstraintDisplacement001.yFix = True
+App.ActiveDocument.ConstraintDisplacement001.zFree = False
+App.ActiveDocument.ConstraintDisplacement001.zFix = True
+App.ActiveDocument.ConstraintDisplacement001.rotxFree = True
+App.ActiveDocument.ConstraintDisplacement001.rotxFix = False
+App.ActiveDocument.ConstraintDisplacement001.rotyFree = True
+App.ActiveDocument.ConstraintDisplacement001.rotyFix = False
+App.ActiveDocument.ConstraintDisplacement001.rotzFree = True
+App.ActiveDocument.ConstraintDisplacement001.rotzFix = False
+App.ActiveDocument.ConstraintDisplacement001.Scale = 1
+App.ActiveDocument.ConstraintDisplacement001.References = [(App.ActiveDocument.BooleanFragments,"Vertex2")]
+App.ActiveDocument.recompute()
+# Gui.activeDocument().resetEdit()
+# Gui.Selection.clearSelection()
+### Begin command FEM_ConstraintForce
+App.activeDocument().addObject("Fem::ConstraintForce","ConstraintForce")
+App.activeDocument().ConstraintForce.Force = 1.0
+App.activeDocument().ConstraintForce.Reversed = False
+App.activeDocument().ConstraintForce.Scale = 1
+App.activeDocument().Analysis.addObject(App.activeDocument().ConstraintForce)
+for amesh in App.activeDocument().Objects:
+    if "ConstraintForce" == amesh.Name:
+        amesh.ViewObject.Visibility = True
+    elif "Mesh" in amesh.TypeId:
+        aparttoshow = amesh.Name.replace("_Mesh","")
+        for apart in App.activeDocument().Objects:
+            if aparttoshow == apart.Name:
+                apart.ViewObject.Visibility = True
+        amesh.ViewObject.Visibility = False
+
+App.ActiveDocument.recompute()
+# Gui.activeDocument().setEdit('ConstraintForce')
+### End command FEM_ConstraintForce
+# Gui.Selection.addSelection('Unnamed','BooleanFragments','Vertex1',500,0,0)
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Unnamed','Line002','Edge1',0,113.201,100)
+App.ActiveDocument.ConstraintForce.Force = 5000
+App.ActiveDocument.ConstraintForce.Direction = (App.ActiveDocument.Line002,["Edge1"])
+App.ActiveDocument.ConstraintForce.Reversed = True
+App.ActiveDocument.ConstraintForce.Scale = 1
+App.ActiveDocument.ConstraintForce.References = [(App.ActiveDocument.BooleanFragments,"Vertex1")]
+App.ActiveDocument.recompute()
+# Gui.activeDocument().resetEdit()
+
+ObjectsFem.makeMeshGmsh(FreeCAD.ActiveDocument, 'FEMMeshGmsh')
+FreeCAD.ActiveDocument.ActiveObject.Part = FreeCAD.ActiveDocument.BooleanFragments
+FemGui.getActiveAnalysis().addObject(FreeCAD.ActiveDocument.ActiveObject)
+FreeCADGui.ActiveDocument.setEdit(FreeCAD.ActiveDocument.ActiveObject.Name)
+
+# 
+App.activeDocument().ActiveObject.load(App.activeDocument().getObject("CCX_Results"))
+App.activeDocument().ActiveObject.ViewObject.DisplayMode = "Surface"
+App.activeDocument().ActiveObject.ViewObject.SelectionStyle = "BoundBox"
+App.ActiveDocument.recompute()
+### End command FEM_PostPipelineFromResult
+#

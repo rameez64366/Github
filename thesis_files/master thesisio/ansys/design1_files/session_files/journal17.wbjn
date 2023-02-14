@@ -1,0 +1,30 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS")
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+designPoint1 = Parameters.GetDesignPoint(Name="0")
+parameter1 = Parameters.GetParameter(Name="P12")
+designPoint1.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="40")
+parameter2 = Parameters.GetParameter(Name="P13")
+designPoint1.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="40")
+Refresh()
+Save(Overwrite=True)
+designPoint1.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="20")
+designPoint1.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="60")
+Refresh()
+model1.Exit()
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+model1.Edit()
+Save(Overwrite=True)

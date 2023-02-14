@@ -35,10 +35,6 @@ def construction_geometry():
     else:
         pass
 
-def mesh_creation():
-    ##Mesh creation##
-    mesh.ElementSize =Quantity("10 [mm]")
-    mesh.GenerateMesh()    
 
 def Boundary_conditions():
     ###Adding boundary conditions
@@ -126,7 +122,11 @@ def parameterize():
     min_combined.CreateParameter("Minimum")
     max_combined=solution.Children[3].Children[2]
     max_combined.CreateParameter("Maximum")
-    
+
+
+mesh.ElementSize =Quantity("10 [mm]")
+mesh.GenerateMesh()    
+
 construction_geometry()
 mesh_creation()
 Boundary_conditions()
@@ -134,3 +134,5 @@ analysis_objects()
 solution.Solve(True)   #solve the analysis
 parameterize()         #comment this line after running script once
 #results()              #only to export results for analysis comparison
+
+

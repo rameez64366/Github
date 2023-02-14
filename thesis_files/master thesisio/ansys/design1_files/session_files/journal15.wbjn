@@ -1,0 +1,55 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+system1 = GetSystem(Name="SYS 2")
+engineeringDataComponent1 = system1.GetComponent(Name="Engineering Data")
+engineeringDataComponent1.DeleteShare(System=system1)
+system2 = GetSystem(Name="SYS")
+engineeringDataComponent2 = system2.GetComponent(Name="Engineering Data")
+engineeringDataComponent1.ReplaceWithShare(
+    TargetSystem=system1,
+    ComponentToShare=engineeringDataComponent2,
+    SourceSystem=system2)
+geometry1 = system2.GetContainer(ComponentName="Geometry")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+system1.Delete()
+designPoint1 = Parameters.GetDesignPoint(Name="2")
+designPoint1.Delete()
+designPoint2 = Parameters.GetDesignPoint(Name="3")
+designPoint2.Delete()
+designPoint3 = Parameters.GetDesignPoint(Name="4")
+designPoint3.Delete()
+designPoint4 = Parameters.CreateDesignPoint()
+parameter1 = Parameters.GetParameter(Name="P12")
+designPoint4.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="20")
+parameter2 = Parameters.GetParameter(Name="P13")
+designPoint4.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="60")
+parameter3 = Parameters.GetParameter(Name="P38")
+designPoint4.SetParameterExpression(
+    Parameter=parameter3,
+    Expression="10 [mm]")
+backgroundSession1 = UpdateAllDesignPoints(DesignPoints=[designPoint4])
+geometry1.Edit(IsSpaceClaimGeometry=True)
+designPoint5 = Parameters.GetDesignPoint(Name="0")
+designPoint5.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="20")
+designPoint5.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="60")
+designPoint4.Delete()
+designPoint6 = Parameters.GetDesignPoint(Name="1")
+designPoint6.Delete()
+Refresh()
+ClearMessages()
+model1 = system2.GetContainer(ComponentName="Model")
+model1.Edit()
+Refresh()
+model1.Exit()
+geometry1.Exit()
+Save(Overwrite=True)

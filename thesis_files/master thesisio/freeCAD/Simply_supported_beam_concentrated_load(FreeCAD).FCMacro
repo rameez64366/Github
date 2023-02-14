@@ -1,0 +1,344 @@
+import FreeCAD as App
+import FreeCADGui as Gui
+import FemGui as Fem
+import ObjectsFem
+import BOPTools.SplitFeatures
+from femmesh.gmshtools import GmshTools as gt
+from femtools import ccxtools
+import json
+import math
+
+#Parameters in mm
+Rectangle_length=40
+Rectangle_breadth=40
+Extrusion_length=1000
+a=500                     #distance from left the location of concentrated load
+concentrated_load_val=5000              #in Newton [N]
+mesh_size=15
+# linear material input
+material_name="Steel-Generic"
+young_modulus="210000 MPa"
+poisson_ratio="0.30"
+density="7900 kg/m^3"
+
+#nonlinear material input
+#yield points for simple hardening is inputted as list with format (stress,plastic strain) with initial value as (yield point,0) below is the true stress-strain for generic steel
+yield_points=["250,0","250.8,0.00199","255.1,0.00224","259.4,0.00252","263.7,0.00282","268,0.00315","272.3,0.00352","276.6,0.00393","281,0.00437","285.4,0.00486","289.8,0.00539","294.2,0.00597","305.3,0.00765","316.5,0.00974","339.7,0.01537","364.1,0.02357","390.2,0.03519","418.7,0.05127","450.6,0.07302","487.2,0.10178","507.6,0.11923","529.9,0.13898"]
+
+
+toggle_count=0                      #a counter to switch between linear and nonlinear material input 0 for linear and 1 for non-linear
+def rectangle_3D():
+	name_document="Simply supported rectangular beam with concentrated load"
+	doc=App.newDocument(name_document)
+	doc=App.activeDocument()
+	#add a rectangle extrusion of beam body
+	rectangle=doc.addObject("Part::Box","Box")
+	rectangle.Label="Beam Body"
+	rectangle.Length=Extrusion_length
+	rectangle.Width=Rectangle_breadth
+	rectangle.Height=Rectangle_length
+	
+	#add an area for the application of concentrated load
+	concentrated_load_area=doc.addObject("Part::Box","Box")
+	concentrated_load_area.Label="area_for_concentrated_load"
+	concentrated_load_area.Length=100
+	concentrated_load_area.Width=Rectangle_breadth
+	concentrated_load_area.Height=Rectangle_length
+	p=a-50
+	concentrated_load_area.Placement=App.Placement(App.Vector(p,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
+	
+	#add boolean to make a single beam body
+	part=BOPTools.SplitFeatures.makeBooleanFragments(name='BooleanFragments')
+	part.Objects = [doc.Box, doc.Box001]
+	part.Mode = 'CompSolid'
+	part.Proxy.execute(part)
+	part.purgeTouched()
+	
+	
+	###FEM work bench###
+	def Analysis_tool():
+		analysis_object=ObjectsFem.makeAnalysis(doc, 'Analysis')
+		solver_object = ObjectsFem.makeSolverCalculixCcxTools(doc, "CalculiX")
+		solver_object.GeometricalNonlinearity = 'linear'
+		solver_object.ThermoMechSteadyState = True
+		solver_object.MatrixSolverType = 'default'
+		solver_object.IterationsControlParameterTimeUse = False
+		if toggle_count==1:
+			 solver_object.MaterialNonlinearity="nonlinear"
+			 solver_object.GeometricalNonlinearity="nonlinear"
+		else:
+			pass
+		analysis_object.addObject(solver_object)
+		
+		#FEM Meshing#
+		mesh = ObjectsFem.makeMeshGmsh(doc,'FEMMeshGmsh') #create a mesh environment
+		mesh.Part=doc.BooleanFragments
+		mesh.ElementDimension="From Shape"	 #Setting type of element for mesh 1D element= "1D", 2D ="2D", 3D="3D",automatic detection by the mesh program="From shape" 
+		mesh.ElementOrder="2nd"		 # Element order for midside nodes ("2nd") and no mid side nodes ("1st")
+		mesh.CharacteristicLengthMax=mesh_size       # maximum element size
+		mesh.CharacteristicLengthMin=0		 # minimum element size
+		gt(mesh).create_mesh()		 #run the mesh parameters and add to specified model
+		analysis_object.addObject(mesh)
+		
+		#adding material
+		material_object = ObjectsFem.makeMaterialSolid(doc,"SolidMaterial")
+		mat = material_object.Material
+		mat['Name'] = material_name
+		mat['YoungsModulus'] = young_modulus
+		mat['PoissonRatio'] = poisson_ratio
+		mat['Density'] = density
+		material_object.Material = mat
+		material_object.References = [(doc.BooleanFragments, "Solid1"),(doc.BooleanFragments, "Solid2"),(doc.BooleanFragments, "Solid3")]
+		analysis_object.addObject(material_object)
+		if toggle_count==1:
+			non_linear_material=ObjectsFem.makeMaterialMechanicalNonlinear(doc,App.ActiveDocument.getObject('MaterialSolid'))
+			non_linear_material.LinearBaseMaterial=doc.SolidMaterial
+			non_linear_material.YieldPoints=yield_points
+		else:
+			pass
+		analysis_object.addObject(non_linear_material)
+		# fixed_constraint
+		fixed_constraint = ObjectsFem.makeConstraintFixed(doc, "FemConstraintFixed")
+		fixed_constraint.References = [(doc.BooleanFragments, "Edge1")]
+		analysis_object.addObject(fixed_constraint)
+		
+		#constaining selfweight for compsolid
+		constraint_weights=ObjectsFem.makeConstraintSelfWeight(doc, "FemConstraintSelfWeight")
+		analysis_object.addObject(constraint_weights)
+	
+		#displacement constraint
+		displacement_constraint=ObjectsFem.makeConstraintDisplacement(doc, "FemConstraintDisplacement")
+		displacement_constraint.References=[(doc.BooleanFragments, "Edge22")]
+		displacement_constraint.xFree=True
+		displacement_constraint.xFix=False
+		displacement_constraint.yFix=True
+		displacement_constraint.yFree=False
+		displacement_constraint.zFix=True
+		displacement_constraint.zFree=False
+		analysis_object.addObject(displacement_constraint)
+	
+		#Force constraint
+		force_constraint=ObjectsFem.makeConstraintForce(doc, "FemConstraintForce")
+		force_constraint.References=[(doc.BooleanFragments, "Face9")]
+		if toggle_count==1:
+			force_constraint.Force=concentrated_load_val*5
+		else:
+			force_constraint.Force=concentrated_load_val
+		force_constraint.Reversed=True
+		force_constraint.Direction = (doc.BooleanFragments,["Edge14"])
+		analysis_object.addObject(force_constraint)
+	
+		#activating the analysis and executing the result of FEM
+		if toggle_count==0:
+			Fem.setActiveAnalysis(doc.Analysis)             #activating the analysis
+			results=ccxtools.FemToolsCcx()
+			results.purge_results()
+			results.run()
+		
+			#analysis of  result
+			for i in analysis_object.Group:
+				if i.isDerivedFrom('Fem::FemResultObject'):        
+					result_object = i
+			doc.recompute()
+	
+			#post processing
+			#hiding other objects in the tree to only visualize the post analysis result
+			doc.getObject("Box").Visibility=False
+			doc.getObject("Box001").Visibility=False
+			doc.getObject("BooleanFragments").Visibility=False
+			doc.getObject("Analysis").Visibility=False
+			doc.getObject("CalculiX").Visibility=False
+			doc.getObject("FEMMeshGmsh").Visibility=False
+			doc.getObject("SolidMaterial").Visibility=False
+			doc.getObject("FemConstraintFixed").Visibility=False
+			doc.getObject("FemConstraintSelfWeight").Visibility=False
+			doc.getObject("FemConstraintDisplacement").Visibility=False
+			doc.getObject("FemConstraintForce").Visibility=False
+			doc.getObject("ResultMesh").Visibility=False
+			doc.getObject("CCX_Results").Visibility=False
+			doc.getObject("ccx_dat_file").Visibility=False
+			
+			#adding pipeline post processing
+			vtkresult = ObjectsFem.makePostVtkResult(doc, doc.CCX_Results)
+			doc.recompute()
+			vtkresult.ViewObject.DisplayMode = 'Surface' 
+			vtkresult.ViewObject.Field = 'Displacement'
+			vtkresult.ViewObject.VectorMode = 'Y'
+		else:
+			pass
+	Analysis_tool()
+
+####line body creation
+def line_body_rectangle_3D():
+	name_document="line_body_Simply supported rectangular beam with concentrated load"
+	doc=App.newDocument(name_document)
+	doc=App.activeDocument()
+
+	#creating line body
+	doc.addObject("Part::Line","Line")
+	doc.Line.X1=0.00
+	doc.Line.X2=a
+	doc.Line.Y1=0.00
+	doc.Line.Y2=0.00
+	doc.Line.Z1=0.00
+	doc.Line.Z2=0.00
+	doc.Line.Placement=App.Placement(App.Vector(0.00,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
+	doc.Line.Label='Segment1'
+
+	doc.addObject("Part::Line","Line001")
+	doc.Line001.X1=a
+	doc.Line001.X2=Extrusion_length
+	doc.Line001.Y1=0.00
+	doc.Line001.Y2=0.00
+	doc.Line001.Z1=0.00
+	doc.Line001.Z2=0.00
+	doc.Line001.Placement=App.Placement(App.Vector(0.00,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
+	doc.Line001.Label='Segment2'
+
+	#combine the two segment
+	seg= BOPTools.SplitFeatures.makeBooleanFragments(name='BooleanFragments')
+	seg.Objects = [doc.Line001, doc.Line]
+	seg.Mode = 'Standard'
+	seg.Proxy.execute(seg)
+	seg.purgeTouched()
+	
+	#linebody for specifying load direction
+	doc.addObject("Part::Line","Line002")
+	doc.Line002.X1=0
+	doc.Line002.X2=0
+	doc.Line002.Y1=100
+	doc.Line002.Y2=200
+	doc.Line002.Z1=100
+	doc.Line002.Z2=100
+	doc.Line002.Placement=App.Placement(App.Vector(0.00,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
+	doc.Line002.Label='Load_direction'
+	
+	###FEM work bench###
+	def Analysis_tool():
+		#adding analysis container
+		analysis_object=ObjectsFem.makeAnalysis(doc, 'Analysis')
+		solver_object = ObjectsFem.makeSolverCalculixCcxTools(doc, "CalculiX")
+		solver_object.GeometricalNonlinearity = 'linear'
+		solver_object.ThermoMechSteadyState = True
+		solver_object.MatrixSolverType = 'default'
+		solver_object.IterationsControlParameterTimeUse = False
+		analysis_object.addObject(solver_object)
+		
+		#adding beam cross section
+		beam_cross_section=ObjectsFem.makeElementGeometry1D(doc, 'FEMElementGeometry1D')
+		beam_cross_section.SectionType="Rectangular"
+		beam_cross_section.RectHeight=Rectangle_length
+		beam_cross_section.RectWidth=Rectangle_breadth
+		beam_cross_section.References=[(doc.BooleanFragments, "Edge1"),(doc.BooleanFragments, "Edge2")]
+		analysis_object.addObject(beam_cross_section)
+
+		#FEM Meshing#
+		mesh = ObjectsFem.makeMeshGmsh(doc,'FEMMeshGmsh') #create a mesh environment
+		mesh.Part=doc.BooleanFragments
+		mesh.ElementDimension="1D"	 #Setting type of element for mesh 1D element= "1D", 2D ="2D", 3D="3D",automatic detection by the mesh program="From shape" 
+		mesh.ElementOrder="2nd"		 # Element order for midside nodes ("2nd") and no mid side nodes ("1st")
+		mesh.CharacteristicLengthMax=mesh_size        # maximum element size
+		mesh.CharacteristicLengthMin=0		 # minimum element size
+		gt(mesh).create_mesh()		 #run the mesh parameters and add to specified model
+		analysis_object.addObject(mesh)
+		
+		#adding material
+		material_object = ObjectsFem.makeMaterialSolid(doc,"SolidMaterial")
+		mat = material_object.Material
+		mat['Name'] = material_name
+		mat['YoungsModulus'] = young_modulus
+		mat['PoissonRatio'] = poisson_ratio
+		mat['Density'] = density
+		material_object.Material = mat
+		material_object.References = [(doc.BooleanFragments, "Edge1"),(doc.BooleanFragments, "Edge2")]
+		analysis_object.addObject(material_object)
+	
+		#displacement constraint for left vertex
+		displacement_constraint=ObjectsFem.makeConstraintDisplacement(doc, "FemConstraintDisplacement")
+		displacement_constraint.References=[(doc.BooleanFragments, "Vertex3")]
+		displacement_constraint.xFree=False
+		displacement_constraint.xFix=True
+		displacement_constraint.yFix=True
+		displacement_constraint.yFree=False
+		displacement_constraint.zFix=True
+		displacement_constraint.zFree=False
+		displacement_constraint.rotxFix=True
+		displacement_constraint.rotxFree=False
+		displacement_constraint.rotyFix=False
+		displacement_constraint.rotyFree=True
+		displacement_constraint.rotzFix=False
+		displacement_constraint.rotzFree=True
+		displacement_constraint.Label="fixed_support"
+		analysis_object.addObject(displacement_constraint)
+
+	      #displacement constraint for right vertex
+		displacement_constraint1=ObjectsFem.makeConstraintDisplacement(doc, "FemConstraintDisplacement")
+		displacement_constraint1.References=[(doc.BooleanFragments, "Vertex2")]
+		displacement_constraint1.xFree=True
+		displacement_constraint1.xFix=False
+		displacement_constraint1.yFix=True
+		displacement_constraint1.yFree=False
+		displacement_constraint1.zFix=True
+		displacement_constraint1.zFree=False
+		displacement_constraint1.rotxFix=False
+		displacement_constraint1.rotxFree=True
+		displacement_constraint1.rotyFix=False
+		displacement_constraint1.rotyFree=True
+		displacement_constraint1.rotzFix=False
+		displacement_constraint1.rotzFree=True
+		displacement_constraint1.Label="displacement constraint"
+		analysis_object.addObject(displacement_constraint1)
+
+#		#Force constraint
+		force_constraint=ObjectsFem.makeConstraintForce(doc, "FemConstraintForce")
+		force_constraint.References=[(doc.BooleanFragments, "Vertex1")]
+		force_constraint.Force=concentrated_load_val
+		force_constraint.Reversed=True
+		force_constraint.Direction = (doc.Line002,["Edge1"])
+		analysis_object.addObject(force_constraint)
+
+#		#activating the analysis and executing the result of FEM
+		Fem.setActiveAnalysis(doc.Analysis)             #activating the analysis
+		results=ccxtools.FemToolsCcx()
+		results.purge_results()
+		results.run()
+	
+#		#analysis of  result
+		for i in analysis_object.Group:
+			if i.isDerivedFrom('Fem::FemResultObject'):        
+				result_object = i
+		doc.recompute()
+
+#		#post processing
+#		#hiding other objects in the tree to only visualize the post analysis result
+		doc.getObject("Line").Visibility=False
+		doc.getObject("Line001").Visibility=False
+		doc.getObject("Line002").Visibility=False
+		doc.getObject("BooleanFragments").Visibility=False
+		doc.getObject("Analysis").Visibility=False
+		doc.getObject("CalculiX").Visibility=False
+		doc.getObject("FEMMeshGmsh").Visibility=False
+		doc.getObject("SolidMaterial").Visibility=False
+		doc.getObject("FemConstraintDisplacement").Visibility=False
+		doc.getObject("FemConstraintDisplacement001").Visibility=False
+		doc.getObject("FemConstraintForce").Visibility=False
+		doc.getObject("ResultMesh").Visibility=False
+		doc.getObject("CCX_Results").Visibility=False
+		doc.getObject("ccx_dat_file").Visibility=False
+		
+		#adding pipeline post processing
+		vtkresult = ObjectsFem.makePostVtkResult(doc, doc.CCX_Results)
+		doc.recompute()
+		vtkresult.ViewObject.DisplayMode = 'Nodes' 
+		vtkresult.ViewObject.Field = 'Displacement'
+		vtkresult.ViewObject.VectorMode = 'Y'
+	Analysis_tool()
+
+#linear analysis function calls
+rectangle_3D()
+line_body_rectangle_3D()
+
+def non_linear():  
+	rectangle_3D()
+toggle_count=1
+non_linear()

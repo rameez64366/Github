@@ -1,0 +1,153 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+template1 = GetTemplate(
+    TemplateName="Static Structural",
+    Solver="ANSYS")
+system1 = template1.CreateSystem()
+system2 = template1.CreateSystem(
+    Position="Right",
+    RelativeTo=system1)
+engineeringData1 = system1.GetContainer(ComponentName="Engineering Data")
+matl1 = engineeringData1.CreateMaterial(Name="structural steel new")
+matlProp1 = matl1.CreateProperty(
+    Name="Elasticity",
+    Behavior="Isotropic",
+    Qualifiers={"Definition": "", "Behavior": "Isotropic"})
+matlProp1.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp1.SetData(
+    Index=-1,
+    Variables=["Young's Modulus"],
+    Values=[["210000 [MPa]"]])
+matlProp1.SetData(
+    Variables=["Poisson's Ratio"],
+    Values=[["0.3"]])
+engineeringDataComponent1 = system2.GetComponent(Name="Engineering Data")
+engineeringDataComponent2 = system1.GetComponent(Name="Engineering Data")
+engineeringDataComponent1.ReplaceWithShare(
+    TargetSystem=system2,
+    ComponentToShare=engineeringDataComponent2,
+    SourceSystem=system1)
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.Edit()
+Save(Overwrite=True)
+modelComponent1 = system1.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+geometry1.Exit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+model1.Exit()
+Save(Overwrite=True)
+geometry2 = system2.GetContainer(ComponentName="Geometry")
+geometry2.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+geometry2.Exit()
+modelComponent2 = system2.GetComponent(Name="Model")
+modelComponent2.Refresh()
+model2 = system2.GetContainer(ComponentName="Model")
+model2.Edit()
+Save(Overwrite=True)
+model2.Exit()
+system3 = template1.CreateSystem(
+    Position="Below",
+    RelativeTo=system2)
+geometryComponent1 = system3.GetComponent(Name="Geometry")
+geometryComponent2 = system1.GetComponent(Name="Geometry")
+geometryComponent1.ReplaceWithShare(
+    TargetSystem=system3,
+    ComponentToShare=geometryComponent2,
+    SourceSystem=system1)
+Save(Overwrite=True)
+system1.DisplayText = "Simpl"
+system1.DisplayText = "Simply supported rectangle beam with 1 concetrated_load(Elastic)"
+system2.DisplayText = "Line body simulation(elastic)"
+system3.DisplayText = "non linear simulation"
+Save(Overwrite=True)
+engineeringData2 = system3.GetContainer(ComponentName="Engineering Data")
+matl2 = engineeringData2.CreateMaterial(Name="non linear structural steel")
+matlProp2 = matl2.CreateProperty(
+    Name="Elasticity",
+    Behavior="Isotropic",
+    Qualifiers={"Definition": "", "Behavior": "Isotropic"})
+matlProp2.SetVariableProperty(
+    VariableName="Young's Modulus",
+    Property="Unit",
+    Value="MPa")
+matlProp2.SetData(
+    Index=-1,
+    Variables=["Young's Modulus"],
+    Values=[["210000 [MPa]"]])
+matlProp2.SetData(
+    Variables=["Poisson's Ratio"],
+    Values=[["0.3"]])
+Save(Overwrite=True)
+matlProp3 = matl2.CreateProperty(
+    Name="Isotropic Hardening",
+    Definition="Multilinear",
+    Qualifiers={"Definition": "Multilinear", "Behavior": ""})
+matlProp3.BeginBatchUpdate()
+matlProp3.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Index=-1,
+    Variables=["Temperature"],
+    Values=[["22 [C]"]])
+matlProp3.EndBatchUpdate()
+matlProp3.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Plastic Strain"],
+    Values=[["0 [m m^-1]"]])
+matlProp3.BeginBatchUpdate()
+matlProp3.SetVariableProperty(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    VariableName="Stress",
+    Property="Unit",
+    Value="MPa")
+matlProp3.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Stress"],
+    Values=[["7.8886090522101181E-31 [MPa]"]])
+matlProp3.EndBatchUpdate()
+matlProp3.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Variables=["Stress"],
+    Values=[["250 [MPa]"]])
+matlProp3.BeginBatchUpdate()
+matlProp3.SetData(
+    SheetName="Isotropic Hardening",
+    SheetQualifiers={"Definition": "Multilinear", "Behavior": ""},
+    Index=-1,
+    Variables=["Plastic Strain", "Stress", "Temperature"],
+    Values=[["0.00199 [m m^-1]", "0.00224 [m m^-1]", "0.00252 [m m^-1]", "0.00282 [m m^-1]", "0.00315 [m m^-1]", "0.00352 [m m^-1]", "0.00393 [m m^-1]", "0.00437 [m m^-1]", "0.00486 [m m^-1]", "0.00539 [m m^-1]", "0.00597 [m m^-1]", "0.00765 [m m^-1]", "0.00974 [m m^-1]", "0.01537 [m m^-1]", "0.02357 [m m^-1]", "0.03519 [m m^-1]", "0.05127 [m m^-1]", "0.07302 [m m^-1]", "0.10178 [m m^-1]", "0.11923 [m m^-1]", "0.13898 [m m^-1]"], ["250.8 [MPa]", "255.1 [MPa]", "259.4 [MPa]", "263.7 [MPa]", "268 [MPa]", "272.3 [MPa]", "276.6 [MPa]", "281 [MPa]", "285.4 [MPa]", "289.8 [MPa]", "294.2 [MPa]", "305.3 [MPa]", "316.5 [MPa]", "339.7 [MPa]", "364.1 [MPa]", "390.2 [MPa]", "418.7 [MPa]", "450.6 [MPa]", "487.2 [MPa]", "507.6 [MPa]", "529.9 [MPa]"], ["22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]", "22 [C]"]])
+matlProp3.EndBatchUpdate()
+Save(Overwrite=True)
+modelComponent3 = system3.GetComponent(Name="Model")
+modelComponent3.Refresh()
+model3 = system3.GetContainer(ComponentName="Model")
+model3.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+model3.Exit()
+Save(Overwrite=True)

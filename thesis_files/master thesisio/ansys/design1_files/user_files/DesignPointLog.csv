@@ -41,3 +41,146 @@ DP 3,500,1000,20,60,10,-2.3366506099700928,116.31139755249023,116.33864914328761
 # A non parametric change occurred and invalidated design point results.
 # 02/12/2023 06:47:42
 # 
+# 
+# 02/12/2023 09:13:27
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P12 - Rectangle_length,P13 - Rectangle_breadth,P15 - Concentrated_load_distance_from_left,P14 - Extrusion_length,P37 - concentrated_load Y Component [N],P24 - Rectangle_breadth [mm],P23 - Rectangle_length [mm],P45 - Shear stress at half distance to concentrated load Minimum [MPa],P43 - Maximum Principal Stress Maximum [MPa],P44 - Tensile normal stress Maximum [MPa],P38 - Mesh Element Size [mm],P46 - Maximum principal stress unaveraged Maximum [MPa],P42 - Equivalent von mises stress Maximum [MPa],P40 - Mesh Elements,P39 - Mesh Nodes,P25 - rectangle_length,P26 - rectangle_breadth,P27 - extrusion_length,P28 - concentrated_load_distance_from_left,P30 - Mesh Element Size [mm],P32 - Mesh Elements,P35 - Maximum Combined Stress Maximum [MPa],P34 - Minimum Combined Stress Minimum [MPa],P33 - Deformation of beam neutral axis Minimum [mm],P31 - Mesh Nodes,P29 - concentrated_load Y Component [N],P36 - Beam (Rectangle) Assignment,P41 - Deformation of beam neutral axis Minimum [mm],P47 - SYS-3\Rectangular Beam Assignment
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P12,P13,P15,P14,P37,P24,P23,P45,P43,P44,P38,P46,P42,P40,P39,P25,P26,P27,P28,P30,P32,P35,P34,P33,P31,P29,P36,P41,P47
+DP 0,40,40,500,1000,-5000,39.999999999999915,39.999999999999915,-2.4253090918064113,115.65268707275391,115.65268707275391,20,115.65490017530381,115.4839567042859,200,1521,40,40,1000,500,20,50,117.1875,-117.1875,-2.3366351127624512,101,-5000,Structural steel new,-2.3360843658447266,Structural steel new
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 09:39:30
+# 
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 11:31:19
+# 
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 12:18:43
+# 
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 13:07:00
+# 
+# 
+# 02/12/2023 13:25:21
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P12 - Rectangle_length,P13 - Rectangle_breadth,P15 - Concentrated_load_distance_from_left,P14 - Extrusion_length,P19 - Mesh Elements,P17 - Mesh Element Size [mm],P16 - concentrated_load Y Component [N],P18 - Mesh Nodes,P20 - Deformation of beam neutral axis Minimum [mm],P21 - Equivalent von mises stress Maximum [MPa],P22 - Maximum Principal Stress Maximum [MPa],P23 - Tensile normal stress Maximum [MPa],P24 - Shear stress at half distance to concentrated load Minimum [MPa],P25 - Maximum principal stress unaveraged Maximum [MPa],P26 - SYS-3\Rectangular Beam Assignment
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P12,P13,P15,P14,P19,P17,P16,P18,P20,P21,P22,P23,P24,P25,P26
+DP 0,20,60,500,1000,1200,10,-5000,7453,-1.3955403566360471,106.28646793152987,103.09224700927734,103.09224700927739,-3.1427767276763916,103.0922471291863,Structural steel new
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 13:35:10
+# 
+# 
+# 02/12/2023 13:42:30
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P12 - Rectangle_length,P13 - Rectangle_breadth,P15 - Concentrated_load_distance_from_left,P14 - Extrusion_length,P19 - Mesh Elements,P17 - Mesh Element Size [mm],P16 - concentrated_load Y Component [N],P18 - Mesh Nodes,P20 - Deformation of beam neutral axis Minimum [mm],P21 - Equivalent von mises stress Maximum [MPa],P22 - Maximum Principal Stress Maximum [MPa],P23 - Tensile normal stress Maximum [MPa],P24 - Shear stress at half distance to concentrated load Minimum [MPa],P25 - Maximum principal stress unaveraged Maximum [MPa],P26 - SYS-3\Rectangular Beam Assignment
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P12,P13,P15,P14,P19,P17,P16,P18,P20,P21,P22,P23,P24,P25,P26
+DP 0,20,60,500,1000,1200,10,-5000,7453,-1.3955403566360471,106.28646793152987,103.09224700927734,103.09224700927739,-3.1427767276763916,103.0922471291863,Structural steel new
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 13:50:03
+# 
+DP 1,20,40,500,1000,800,10,-5000,5237,-4.6743140220642081,232.85456483715893,232.66572570800781,232.66572570800784,-4.7462019920349112,232.66574887176131,Structural steel new
+# 
+# 02/12/2023 13:56:11
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P12 - Rectangle_length,P13 - Rectangle_breadth,P15 - Concentrated_load_distance_from_left,P14 - Extrusion_length,P19 - Mesh Elements,P17 - Mesh Element Size [mm],P16 - concentrated_load Y Component [N],P18 - Mesh Nodes,P20 - Deformation of beam neutral axis Minimum [mm],P21 - Equivalent von mises stress Maximum [MPa],P22 - Maximum Principal Stress Maximum [MPa],P23 - Tensile normal stress Maximum [MPa],P24 - Shear stress at half distance to concentrated load Minimum [MPa],P25 - Maximum principal stress unaveraged Maximum [MPa],P26 - SYS-3\Rectangular Beam Assignment
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P12,P13,P15,P14,P19,P17,P16,P18,P20,P21,P22,P23,P24,P25,P26
+DP 0,20,60,500,1000,1200,10,-5000,7453,-1.3955403566360471,106.28646793152987,103.09224700927734,103.09224700927739,-3.1427767276763916,103.0922471291863,Structural steel new
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 13:59:47
+# 
+# 
+# 02/12/2023 14:01:30
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P12 - Rectangle_length,P13 - Rectangle_breadth,P15 - Concentrated_load_distance_from_left,P14 - Extrusion_length,P19 - Mesh Elements,P17 - Mesh Element Size [mm],P16 - concentrated_load Y Component [N],P18 - Mesh Nodes,P20 - Deformation of beam neutral axis Minimum [mm],P21 - Equivalent von mises stress Maximum [MPa],P22 - Maximum Principal Stress Maximum [MPa],P23 - Tensile normal stress Maximum [MPa],P24 - Shear stress at half distance to concentrated load Minimum [MPa],P25 - Maximum principal stress unaveraged Maximum [MPa]
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P12,P13,P15,P14,P19,P17,P16,P18,P20,P21,P22,P23,P24,P25
+DP 1,40,40,500,1000,1600,10,-5000,9065,-2.3366506099700928,117.26416668252651,116.31139755249023,116.30609893798825,-2.2539761066436768,116.33864914328761
+# 
+# 02/12/2023 14:04:18
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P12 - Rectangle_length,P13 - Rectangle_breadth,P15 - Concentrated_load_distance_from_left,P14 - Extrusion_length,P19 - Mesh Elements,P17 - Mesh Element Size [mm],P16 - concentrated_load Y Component [N],P18 - Mesh Nodes,P20 - Deformation of beam neutral axis Minimum [mm],P21 - Equivalent von mises stress Maximum [MPa],P22 - Maximum Principal Stress Maximum [MPa],P23 - Tensile normal stress Maximum [MPa],P24 - Shear stress at half distance to concentrated load Minimum [MPa],P25 - Maximum principal stress unaveraged Maximum [MPa],P26 - SYS-3\Rectangular Beam Assignment
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P12,P13,P15,P14,P19,P17,P16,P18,P20,P21,P22,P23,P24,P25,P26
+DP 0,20,60,500,1000,1200,10,-5000,7453,-1.3955403566360471,106.28646793152987,103.09224700927734,103.09224700927739,-3.1427767276763916,103.0922471291863,Structural steel new
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 14:16:26
+# 
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 14:23:13
+# 
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 15:06:56
+# 
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 16:16:41
+# 
+# 
+# 02/12/2023 16:19:20
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P23 - Mesh Elements,P22 - Mesh Nodes,P20 - concentrated_load Y Component [N],P21 - Mesh Element Size [mm],P19 - Concentrated_load_distance_from_left [mm],P18 - Extrusion_length [mm],P17 - Rectangle_length [mm],P16 - Rectangle_breadth [mm],P24 - Deformation of beam neutral axis Minimum [mm],P25 - Equivalent von mises stress Maximum [MPa],P26 - Maximum Principal Stress Maximum [MPa],P27 - Tensile normal stress Maximum [MPa],P28 - Shear stress at half distance to concentrated load Minimum [MPa],P29 - Maximum principal stress unaveraged Maximum [MPa],P30 - Solid Assignment
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P23,P22,P20,P21,P19,P18,P17,P16,P24,P25,P26,P27,P28,P29,P30
+DP 1,1200,7453,-5000,10,500,1000,60,20,-12.406098365783691,309.89398753417072,310.53147888183594,309.89520263671886,-2.858145952224731,310.64983532188961,structural steel new
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/12/2023 16:49:45
+# 
+# 
+# 02/12/2023 16:52:10
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P23 - Mesh Elements,P22 - Mesh Nodes,P20 - concentrated_load Y Component [N],P21 - Mesh Element Size [mm],P19 - Concentrated_load_distance_from_left [mm],P18 - Extrusion_length [mm],P17 - Rectangle_length [mm],P16 - Rectangle_breadth [mm],P24 - Deformation of beam neutral axis Minimum [mm],P25 - Equivalent von mises stress Maximum [MPa],P26 - Maximum Principal Stress Maximum [MPa],P27 - Tensile normal stress Maximum [MPa],P28 - Shear stress at half distance to concentrated load Minimum [MPa],P29 - Maximum principal stress unaveraged Maximum [MPa],P30 - Solid Assignment,P31 - Concentrated_load_distance_from_left [mm],P32 - Extrusion_length [mm],P34 - Rectangle_breadth [mm],P33 - Rectangle_length [mm],P35 - concentrated_load Y Component [N],P36 - Mesh Element Size [mm],P37 - Mesh Nodes,P38 - Mesh Elements,P39 - Deformation of beam neutral axis Minimum [mm],P40 - Minimum Combined Stress Minimum [MPa],P41 - Maximum Combined Stress Maximum [MPa],P42 - Line Body Assignment
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P23,P22,P20,P21,P19,P18,P17,P16,P24,P25,P26,P27,P28,P29,P30,P31,P32,P34,P33,P35,P36,P37,P38,P39,P40,P41,P42
+DP 0,200,1521,-5000,20,500,1000,40,40,-2.3360843658447261,115.4839567042859,115.65268707275391,115.65268707275388,-2.4253090918064117,115.65490017530381,structural steel new,500,1000,40,40,-5000,10,201,100,-2.3366351127624512,-117.1875,117.1875,structural steel new
+DP 0,200,1521,-5000,20,500,1000,40,40,-2.3360843658447261,115.4839567042859,115.65268707275391,115.65268707275388,-2.4253090918064117,115.65490017530381,structural steel new,500,1000,40,40,-5000,20,101,50,-2.3366351127624512,-117.1875,117.1875,structural steel new
+DP 1,1600,9065,-5000,10,500,1000,40,40,-2.3366506099700928,117.26416653000631,116.31139755249023,116.30609893798825,-2.2539761364459996,116.33864914315272,structural steel new,500,1000,40,40,-5000,10,201,100,-2.3366351127624512,-117.1875,117.1875,structural steel new
+DP 2,3150,16728,-5000,8,500,1000,40,40,-2.336785197257996,118.46945070709205,116.40416145324707,116.4041604995728,-2.1563820838928227,116.40816524647218,structural steel new,500,1000,40,40,-5000,8,253,126,-2.3366351127624512,-117.1875,117.1875,structural steel new
+DP 3,1890,10898,-5000,8,500,1000,20,40,-4.6745901107788095,235.466036874355,232.78372955322266,232.78372955322268,-4.5445641241967678,232.79310678511573,structural steel new,500,1000,40,20,-5000,10,201,100,-18.624162673950195,-468.75,468.75,structural steel new
+DP 4,5040,25473,-5000,8,500,1000,40,60,-0.69777023792266857,54.96865515519611,51.573675155639648,51.573675155639656,-1.5283818989992142,51.574798584941526,structural steel new,500,1000,60,40,-5000,10,201,100,-1.5577566623687744,-78.125,78.125,structural steel new
+DP 5,3150,16728,-5000,8,350,1000,40,40,-2.0691951005408131,108.72018733758183,105.83002084802267,105.8172137737274,-2.8033575148344423,105.83735478959321,structural steel new,350,1000,40,40,-5000,10,201,100,-2.0684883594512939,-106.640625,106.640625,structural steel new
+DP 6,3150,16728,-10000,8,500,1000,40,40,-4.6735703945159921,236.9389014141841,232.80832290649414,232.80832099914559,-4.3127641677856454,232.81633049294436,structural steel new,500,1000,40,40,-10000,10,201,100,-4.6732702255249023,-234.375,234.375,structural steel new
+DP 3,1890,10898,-5000,8,500,1000,20,40,-4.6745901107788095,235.466036874355,232.78372955322266,232.78372955322268,-4.5445641241967678,232.79310678511573,structural steel new,500,1000,20,40,-5000,10,201,100,-4.6732702255249023,-234.375,234.375,structural steel new
+DP 4,5040,25473,-5000,8,500,1000,40,60,-0.69777023792266857,54.96865515519611,51.573675155639648,51.573675155639656,-1.5283818989992142,51.574798584941526,structural steel new,500,1000,40,60,-5000,10,201,100,-0.69659048318862915,-52.083332061767578,52.083332061767578,structural steel new
+DP 7,3024,16601,-5000,8,500,1000,20,60,-1.395873546600342,108.41100660270182,103.09514617919922,103.09514617919922,-3.1338088735938072,103.09661102503428,structural steel new,500,1000,20,60,-5000,10,201,100,-1.3931809663772583,-104.16666412353516,104.16666412353516,structural steel new
+# 
+# 02/13/2023 11:53:53
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P23 - Mesh Elements,P22 - Mesh Nodes,P20 - concentrated_load Y Component [N],P21 - Mesh Element Size [mm],P19 - Concentrated_load_distance_from_left [mm],P18 - Extrusion_length [mm],P17 - Rectangle_length [mm],P16 - Rectangle_breadth [mm],P24 - Deformation of beam neutral axis Minimum [mm],P25 - Equivalent von mises stress Maximum [MPa],P26 - Maximum Principal Stress Maximum [MPa],P27 - Tensile normal stress Maximum [MPa],P28 - Shear stress at half distance to concentrated load Minimum [MPa],P29 - Maximum principal stress unaveraged Maximum [MPa],P30 - Solid Assignment,P31 - Concentrated_load_distance_from_left [mm],P32 - Extrusion_length [mm],P34 - Rectangle_length [mm],P33 - Rectangle_breadth [mm],P35 - concentrated_load Y Component [N],P36 - Mesh Element Size [mm],P37 - Mesh Nodes,P38 - Mesh Elements,P39 - Deformation of beam neutral axis Minimum [mm],P40 - Minimum Combined Stress Minimum [MPa],P41 - Maximum Combined Stress Maximum [MPa],P42 - Line Body Assignment
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P23,P22,P20,P21,P19,P18,P17,P16,P24,P25,P26,P27,P28,P29,P30,P31,P32,P34,P33,P35,P36,P37,P38,P39,P40,P41,P42
+DP 5,3150,16728,-5000,8,750,1000,40,40,-1.6321558170030279,89.492305532266244,87.40981188961652,86.931814193725558,-1.0781911456029019,87.4225303091718,structural steel new,750,1000,40,40,-5000,10,201,100,-1.6311718225479126,-87.890625,87.890625,structural steel new
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/13/2023 12:37:43
+# 
+# 
+# 02/14/2023 05:23:28
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P23 - Mesh Elements,P22 - Mesh Nodes,P20 - concentrated_load Y Component [N],P21 - Mesh Element Size [mm],P19 - Concentrated_load_distance_from_left [mm],P18 - Extrusion_length [mm],P17 - Rectangle_length [mm],P16 - Rectangle_breadth [mm],P24 - Deformation of beam neutral axis Minimum [mm],P25 - Equivalent von mises stress Maximum [MPa],P26 - Maximum Principal Stress Maximum [MPa],P27 - Tensile normal stress Maximum [MPa],P29 - Maximum principal stress unaveraged Maximum [MPa],P30 - Solid Assignment,P31 - Concentrated_load_distance_from_left [mm],P32 - Extrusion_length [mm],P34 - Rectangle_length [mm],P33 - Rectangle_breadth [mm],P35 - concentrated_load Y Component [N],P36 - Mesh Element Size [mm],P37 - Mesh Nodes,P38 - Mesh Elements,P39 - Deformation of beam neutral axis Minimum [mm],P40 - Minimum Combined Stress Minimum [MPa],P41 - Maximum Combined Stress Maximum [MPa],P42 - Line Body Assignment
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P23,P22,P20,P21,P19,P18,P17,P16,P24,P25,P26,P27,P29,P30,P31,P32,P34,P33,P35,P36,P37,P38,P39,P40,P41,P42
+DP 0,200,1521,-5000,20,500,1000,40,40,-2.3360843658447261,115.4839567042859,115.65268707275391,115.65268707275388,115.65490017530381,structural steel new,500,1000,40,40,-5000,20,101,50,-2.3366351127624512,-117.1875,117.1875,structural steel new

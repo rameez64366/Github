@@ -1,0 +1,16 @@
+﻿# 
+# This file contains the parameter values of the Design Points successfully updated by Ansys Workbench.
+# Project name: new_thesis_simply_supported_beam
+# Creation date: 02/14/2023 06:03:02
+# 
+# 02/14/2023 06:03:02
+# The parameters defined in the project are:
+# ,P2 - Rectangle_length_3D [mm],P1 - Rectangle_breadth_3D [mm],P3 - Extrusion_length_3D [mm],P4 - Concentrated_load_distance_from_left [mm]
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P2,P1,P3,P4
+DP 0,40,40,1000,500
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/14/2023 06:08:04
+# 

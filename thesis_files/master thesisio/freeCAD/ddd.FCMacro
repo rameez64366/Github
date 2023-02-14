@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\freeCAD\ddd.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+
+# Gui.runCommand('Std_DlgMacroRecord',0)
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Simply_supported_rectangular_beam_with_concentrated_load','SolidMaterial')
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Simply_supported_rectangular_beam_with_concentrated_load','MaterialMechanicalNonlinear')
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Simply_supported_rectangular_beam_with_concentrated_load','SolidMaterial')
+# Gui.Selection.clearSelection()
+# Gui.Selection.addSelection('Simply_supported_rectangular_beam_with_concentrated_load','MaterialMechanicalNonlinear')
+FreeCAD.getDocument('Simply_supported_rectangular_beam_with_concentrated_load').getObject('MaterialMechanicalNonlinear').LinearBaseMaterial = FreeCAD.getDocument('Simply_supported_rectangular_beam_with_concentrated_load').getObject('SolidMaterial')
+
+# Macro End: C:\Users\Admin\PycharmProjects\Github\thesis_files\master thesisio\freeCAD\ddd.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
