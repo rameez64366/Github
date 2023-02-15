@@ -14,7 +14,7 @@ Rectangle_breadth=40
 Extrusion_length=1000
 a=500                     #distance from left the location of concentrated load
 concentrated_load_val=5000              #in Newton [N]
-mesh_size=15
+mesh_size=8
 # linear material input
 material_name="Steel-Generic"
 young_modulus="210000 MPa"
@@ -25,12 +25,17 @@ density="7900 kg/m^3"
 #yield points for simple hardening is inputted as list with format (stress,plastic strain) with initial value as (yield point,0) below is the true stress-strain for generic steel
 yield_points=["250,0","250.8,0.00199","255.1,0.00224","259.4,0.00252","263.7,0.00282","268,0.00315","272.3,0.00352","276.6,0.00393","281,0.00437","285.4,0.00486","289.8,0.00539","294.2,0.00597","305.3,0.00765","316.5,0.00974","339.7,0.01537","364.1,0.02357","390.2,0.03519","418.7,0.05127","450.6,0.07302","487.2,0.10178","507.6,0.11923","529.9,0.13898"]
 
+toggle_count=0            #a counter to switch between linear and nonlinear material input 0 for linear and 1 for non-linear
 
-toggle_count=0                      #a counter to switch between linear and nonlinear material input 0 for linear and 1 for non-linear
 def rectangle_3D():
-	name_document="Simply supported rectangular beam with concentrated load"
-	doc=App.newDocument(name_document)
-	doc=App.activeDocument()
+	if toggle_count==0:
+		name_document="Simply supported rectangular beam with concentrated load"
+		doc=App.newDocument(name_document)
+		doc=App.activeDocument()  
+	else:
+		name_document="non-linear analysis of Simply supported rectangular beam with concentrated load"
+		doc=App.newDocument(name_document)
+		doc=App.activeDocument()    
 	#add a rectangle extrusion of beam body
 	rectangle=doc.addObject("Part::Box","Box")
 	rectangle.Label="Beam Body"
@@ -39,12 +44,13 @@ def rectangle_3D():
 	rectangle.Height=Rectangle_length
 	
 	#add an area for the application of concentrated load
+	dist=20                   #length of small cutout
 	concentrated_load_area=doc.addObject("Part::Box","Box")
 	concentrated_load_area.Label="area_for_concentrated_load"
-	concentrated_load_area.Length=100
+	concentrated_load_area.Length=dist
 	concentrated_load_area.Width=Rectangle_breadth
 	concentrated_load_area.Height=Rectangle_length
-	p=a-50
+	p=a-dist/2
 	concentrated_load_area.Placement=App.Placement(App.Vector(p,0.00,0.00),App.Rotation(App.Vector(0.00,0.00,1.00),0.00))
 	
 	#add boolean to make a single beam body
@@ -94,9 +100,9 @@ def rectangle_3D():
 			non_linear_material=ObjectsFem.makeMaterialMechanicalNonlinear(doc,App.ActiveDocument.getObject('MaterialSolid'))
 			non_linear_material.LinearBaseMaterial=doc.SolidMaterial
 			non_linear_material.YieldPoints=yield_points
+			analysis_object.addObject(non_linear_material)
 		else:
 			pass
-		analysis_object.addObject(non_linear_material)
 		# fixed_constraint
 		fixed_constraint = ObjectsFem.makeConstraintFixed(doc, "FemConstraintFixed")
 		fixed_constraint.References = [(doc.BooleanFragments, "Edge1")]
@@ -121,7 +127,7 @@ def rectangle_3D():
 		force_constraint=ObjectsFem.makeConstraintForce(doc, "FemConstraintForce")
 		force_constraint.References=[(doc.BooleanFragments, "Face9")]
 		if toggle_count==1:
-			force_constraint.Force=concentrated_load_val*5
+			force_constraint.Force=concentrated_load_val*4
 		else:
 			force_constraint.Force=concentrated_load_val
 		force_constraint.Reversed=True
@@ -129,43 +135,45 @@ def rectangle_3D():
 		analysis_object.addObject(force_constraint)
 	
 		#activating the analysis and executing the result of FEM
-		if toggle_count==0:
-			Fem.setActiveAnalysis(doc.Analysis)             #activating the analysis
-			results=ccxtools.FemToolsCcx()
-			results.purge_results()
-			results.run()
-		
-			#analysis of  result
-			for i in analysis_object.Group:
-				if i.isDerivedFrom('Fem::FemResultObject'):        
-					result_object = i
-			doc.recompute()
 	
-			#post processing
-			#hiding other objects in the tree to only visualize the post analysis result
-			doc.getObject("Box").Visibility=False
-			doc.getObject("Box001").Visibility=False
-			doc.getObject("BooleanFragments").Visibility=False
-			doc.getObject("Analysis").Visibility=False
-			doc.getObject("CalculiX").Visibility=False
-			doc.getObject("FEMMeshGmsh").Visibility=False
-			doc.getObject("SolidMaterial").Visibility=False
-			doc.getObject("FemConstraintFixed").Visibility=False
-			doc.getObject("FemConstraintSelfWeight").Visibility=False
-			doc.getObject("FemConstraintDisplacement").Visibility=False
-			doc.getObject("FemConstraintForce").Visibility=False
-			doc.getObject("ResultMesh").Visibility=False
-			doc.getObject("CCX_Results").Visibility=False
-			doc.getObject("ccx_dat_file").Visibility=False
-			
-			#adding pipeline post processing
-			vtkresult = ObjectsFem.makePostVtkResult(doc, doc.CCX_Results)
-			doc.recompute()
-			vtkresult.ViewObject.DisplayMode = 'Surface' 
-			vtkresult.ViewObject.Field = 'Displacement'
-			vtkresult.ViewObject.VectorMode = 'Y'
-		else:
-			pass
+		Fem.setActiveAnalysis(doc.Analysis)             #activating the analysis
+		results=ccxtools.FemToolsCcx()
+		results.purge_results()
+		results.run()
+	
+		#analysis of  result
+		for i in analysis_object.Group:
+			if i.isDerivedFrom('Fem::FemResultObject'):        
+				result_object = i
+		if toggle_count==1:
+			Equivalent_plastic_strain=result_object.Peeq
+			print(f"The maximum equivalent strain is {max(Equivalent_plastic_strain)}")
+		doc.recompute()
+
+		#post processing
+		#hiding other objects in the tree to only visualize the post analysis result
+		doc.getObject("Box").Visibility=False
+		doc.getObject("Box001").Visibility=False
+		doc.getObject("BooleanFragments").Visibility=False
+		doc.getObject("Analysis").Visibility=False
+		doc.getObject("CalculiX").Visibility=False
+		doc.getObject("FEMMeshGmsh").Visibility=False
+		doc.getObject("SolidMaterial").Visibility=False
+		doc.getObject("FemConstraintFixed").Visibility=False
+		doc.getObject("FemConstraintSelfWeight").Visibility=False
+		doc.getObject("FemConstraintDisplacement").Visibility=False
+		doc.getObject("FemConstraintForce").Visibility=False
+		doc.getObject("ResultMesh").Visibility=False
+		doc.getObject("CCX_Results").Visibility=False
+		doc.getObject("ccx_dat_file").Visibility=False
+		
+		#adding pipeline post processing
+		vtkresult = ObjectsFem.makePostVtkResult(doc, doc.CCX_Results)
+		doc.recompute()
+		vtkresult.ViewObject.DisplayMode = 'Surface' 
+		vtkresult.ViewObject.Field = 'Displacement'
+		vtkresult.ViewObject.VectorMode = 'Y'
+		
 	Analysis_tool()
 
 ####line body creation
@@ -307,6 +315,7 @@ def line_body_rectangle_3D():
 		for i in analysis_object.Group:
 			if i.isDerivedFrom('Fem::FemResultObject'):        
 				result_object = i
+
 		doc.recompute()
 
 #		#post processing
@@ -336,9 +345,9 @@ def line_body_rectangle_3D():
 
 #linear analysis function calls
 rectangle_3D()
-line_body_rectangle_3D()
+#line_body_rectangle_3D()
 
-def non_linear():  
+def non_linear():        
 	rectangle_3D()
-toggle_count=1
-non_linear()
+#toggle_count=1
+#non_linear()

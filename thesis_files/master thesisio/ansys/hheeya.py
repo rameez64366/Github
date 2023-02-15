@@ -106,9 +106,9 @@ def analysis_objects():
     #adding required analysis
     if Analysis_type=="Non-linear":
         if len(solution.Children)==1:
-            #adding equivalent stress
+            #adding equivalent stress maximum over time considering loading and unloading
             equivalent_stress=solution.AddEquivalentStress()
-            equivalent_stress.Name="Equivalent von mises stress"
+            equivalent_stress.Name="Equivalent von mises stress maximum over time"
             equivalent_stress.By = SetDriverStyle.MaximumOverTime
             
             #adding a equivalent total strain
@@ -119,6 +119,11 @@ def analysis_objects():
             
             #adding a equivalent elastic strain
             elastic_strain=solution.AddEquivalentElasticStrainRST()
+            
+            #adding equivalent stress
+            equivalent_stress=solution.AddEquivalentStress()
+            equivalent_stress.Name="residual equivalent stress"
+            equivalent_stress.By = SetDriverStyle.ResultSet
             
     if len(solution.Children)==1:
         #adding directional deformation on neutral axis
@@ -179,10 +184,10 @@ def analysis_objects():
 def result_analysis():
     result=solution.Children
     if Analysis_type=="Non-linear":
-        equivalent_stress_result=result[1].PlotData
         total_strain=result[2].PlotData
         plastic_strain=result[3].PlotData
-        
+        elastic_strain=result[4].PlotData
+        equivalent_stress_result=result[5].PlotData
         equivalent_stress_list=[i for i in equivalent_stress_result["Values"]]
         node_list=[i for i in equivalent_stress_result["Node"]]
         def stress_strain_graph_non_linear():
@@ -231,6 +236,8 @@ def parameterize():
         plastic_strain.CreateParameter("Maximum")
         elastic_strain=solution.Children[4]
         elastic_strain.CreateParameter("Maximum")
+        residual_stress=solution.Children[5]
+        residual_stress.CreateParameter("Maximum")
         mesh.CreateParameter("ElementSize")
         mesh.CreateParameter("Nodes")
         mesh.CreateParameter("Elements")
@@ -254,7 +261,7 @@ def parameterize():
         maxpri_unavg=solution.Children[7]
         maxpri_unavg.CreateParameter("Maximum")
 
-mesh.ElementSize =Quantity("10 [mm]")
+#mesh.ElementSize =Quantity("10 [mm]")
 Boundary_conditions()
 analysis_objects()         #comment this line when doing stress-strain post processing function
 solution.Solve(True)

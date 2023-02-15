@@ -1,10 +1,10 @@
-/COM,ANSYS RELEASE 2022 R2           BUILD 22.2      UP20220516       06:54:01
+/COM,ANSYS RELEASE 2022 R2           BUILD 22.2      UP20220516       17:40:54
 
- *** WARNING ***                         CP =       0.344   TIME= 06:54:02
+ *** WARNING ***                         CP =       0.359   TIME= 17:40:54
  Element shape checking is currently inactive.  Issue SHPP,ON or         
  SHPP,WARN to reactivate, if desired.                                    
 
- *** WARNING ***                         CP =       0.344   TIME= 06:54:02
- Material number 2 (used by element 101) should normally have at least   
+ *** WARNING ***                         CP =       0.359   TIME= 17:40:54
+ Material number 2 (used by element 51) should normally have at least    
  one MP or one TB type command associated with it.  Output of energy by  
  material may not be available.                                          

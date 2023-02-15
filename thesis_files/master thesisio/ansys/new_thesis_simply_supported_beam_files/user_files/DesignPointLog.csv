@@ -14,3 +14,25 @@ DP 0,40,40,1000,500
 # A non parametric change occurred and invalidated design point results.
 # 02/14/2023 06:08:04
 # 
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/14/2023 15:29:02
+# 
+# 
+# A non parametric change occurred and invalidated design point results.
+# 02/14/2023 17:27:08
+# 
+# 
+# 02/14/2023 17:41:38
+# Parameters have been added and/or removed. The parameters now defined in the project are:
+# ,P2 - Rectangle_length_3D [mm],P3 - Extrusion_length_3D [mm],P1 - Rectangle_breadth_3D [mm],P4 - Concentrated_load_distance_from_left [mm],P5 - Solid Assignment,P6 - Mesh Element Size [mm],P7 - Mesh Nodes,P8 - Mesh Elements,P9 - concentrated_load_3D Y Component [N],P10 - Deformation of beam neutral axis_3D Minimum [mm],P11 - Equivalent von mises stress_3D Maximum [MPa],P12 - Maximum Principal Stress_3D Maximum [MPa],P13 - Maximum principal stress unaveraged_3D Maximum [MPa],P14 - Tensile normal stress_3D Maximum [MPa],P15 - Shear stress at 150mm from right end of beam_3D Maximum [MPa],P16 - Rectangle_breadth_line_body [mm],P17 - Rectangle_length_line_body [mm],P18 - Extrusion_length_linebody [mm],P19 - Concentrated_load_distance_from_left [mm],P20 - Line Body Assignment,P21 - Mesh Element Size [mm],P22 - Mesh Nodes,P23 - Mesh Elements,P24 - concentrated_load_linebody Y Component [N],P25 - Deformation of beam neutral axis_linebody Minimum [mm],P26 - Minimum Combined Stress Minimum [MPa],P27 - Maximum Combined Stress(Bending)_linebody Maximum [MPa],P28 - Solid Assignment,P29 - Mesh Element Size [mm],P30 - Mesh Nodes,P31 - Mesh Elements,P32 - Equivalent von mises stress maximum over time_nonlinear Maximum [MPa],P33 - Equivalent Total Strain_nonlinear Maximum [mm mm^-1],P34 - Equivalent Plastic Strain_nonlinear Maximum [mm mm^-1],P35 - Equivalent Elastic Strain_nonlinear Maximum [mm mm^-1],P36 - residual equivalent stress_nonlinear Maximum [MPa]
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P2,P3,P1,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19,P20,P21,P22,P23,P24,P25,P26,P27,P28,P29,P30,P31,P32,P33,P34,P35,P36
+DP 0,40,1000,40,500,structural steel new,20,1521,200,-5000,-2.3360843658447266,115.4839567042859,115.65268707275391,115.65490017530381,115.65268707275388,2.4253146946430206,40,40,1000,500,structural steel new,20,101,50,-5000,-2.3366351127624512,-117.1875,117.1875,non linear structural steel,20,1521,200,321.61045980615557,0.011190052144229412,0.010981381870806217,0.00078608788317069411,48.2029679547295
+DP 1,40,1000,40,500,structural steel new,12,7625,1344,-5000,-2.3366270065307617,116.21150918445662,116.38520050048831,116.41141059668423,116.38046264648442,2.25397607088089,40,40,1000,500,structural steel new,12,169,84,-5000,-2.3366351127624512,-117.1875,117.1875,non linear structural steel,12,7625,1344,325.25658044245546,0.012285421602427959,0.011864623986184597,0.00094500993145629764,92.2892053643211
+DP 2,40,1000,40,500,structural steel new,10,9065,1600,-5000,-2.3366506099700928,117.26416653000631,116.31139755249023,116.33864914315272,116.30609893798828,2.2539761662483215,40,40,1000,500,structural steel new,10,201,100,-5000,-2.3366351127624512,-117.1875,117.1875,non linear structural steel,10,9065,1600,325.30781350784849,0.01229778490960598,0.011876910924911499,0.00094678052118979394,93.302041194665662
+DP 3,40,1000,40,500,structural steel new,9,14880,2800,-5000,-2.33677077293396,117.53378486215239,116.42046356201172,116.42442328613744,116.42046356201168,2.15638267993927,40,40,1000,500,structural steel new,9,225,112,-5000,-2.3366351127624512,-117.1875,117.1875,non linear structural steel,9,14880,2800,325.83261694584189,0.012469728477299213,0.012004419695585966,0.001008121034828946,211.33653782694302
+DP 4,40,1000,40,700,structural steel new,10,9065,1600,-5000,-1.8719705475701225,99.471723929157946,97.608654653686159,97.762404063089832,97.273040294647231,3.1555667519569397,40,40,1000,700,structural steel new,10,201,100,-5000,-1.8721177577972412,-98.4375,98.4375,non linear structural steel,10,9065,1600,285.14314674861635,0.0043059319723397493,0.0039473583456128836,0.00043688341975212097,81.17190058059748
+DP 5,20,1000,60,500,structural steel new,10,7453,1200,-5000,-1.3955403566360474,106.28646793152987,103.09224700927734,103.09224712918619,103.09224700927734,3.1427766680717464,60,20,1000,500,structural steel new,10,201,100,-5000,-1.3931809663772583,-104.16666412353516,104.16666412353516,non linear structural steel,10,7453,1200,291.74979636611221,0.0063676661811769009,0.0058555495925247669,0.00064462938462384045,135.21359951107493
+DP 6,20,1000,60,700,structural steel new,10,7453,1200,-5000,-1.1177088618278503,97.738876513645778,86.647673274448024,86.674426328854366,86.44896507263185,4.3998873233795166,60,20,1000,700,structural steel new,10,201,100,-5000,-1.1150186061859131,-87.5,87.5,non linear structural steel,10,7453,1200,394.5878892306626,0.0018194361473433673,0.0013634766801260412,0.00045595946721732616,95.430261413190976

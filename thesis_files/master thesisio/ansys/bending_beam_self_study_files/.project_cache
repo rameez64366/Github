@@ -61,6 +61,8 @@ dp0/SYS-11/MECH/file.rst
 dp0/SYS-11/MECH/file0.err
 dp0/SYS-11/MECH/MatML.xml
 dp0/SYS-11/MECH/solve.out
+dp0/SYS-12/DM/SYS-12.agdb
+dp0/SYS-12/ENGD/EngineeringData.xml
 dp0/SYS-2/DM/SYS-2.agdb
 dp0/SYS-2/ENGD/EngineeringData.xml
 dp0/SYS-2/ENGD/material.engd
@@ -168,6 +170,7 @@ session_files/journal31.wbjn
 session_files/journal32.wbjn
 session_files/journal33.wbjn
 session_files/journal34.wbjn
+session_files/journal35.wbjn
 session_files/journal4.wbjn
 session_files/journal5.wbjn
 session_files/journal6.wbjn
@@ -182,6 +185,7 @@ dp0/SYS/
 dp0/SYS-1/
 dp0/SYS-10/
 dp0/SYS-11/
+dp0/SYS-12/
 dp0/SYS-2/
 dp0/SYS-3/
 dp0/SYS-4/
@@ -210,6 +214,8 @@ dp0/SYS-10/ENGD/
 dp0/SYS-10/MECH/
 dp0/SYS-11/DM/
 dp0/SYS-11/MECH/
+dp0/SYS-12/DM/
+dp0/SYS-12/ENGD/
 dp0/SYS-2/DM/
 dp0/SYS-2/ENGD/
 dp0/SYS-2/MECH/

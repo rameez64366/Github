@@ -143,7 +143,7 @@
               <Qualifier name="Lower Limit">Program Controlled</Qualifier>
             </ParameterValue>
           </PropertyData>
-          <PropertyData property="pr8">
+          <PropertyData property="pr7">
             <Data format="string">-</Data>
             <Qualifier name="Definition">Secant</Qualifier>
             <Qualifier name="Behavior">Isotropic</Qualifier>
@@ -158,7 +158,7 @@
               <Data>Coefficient of Thermal Expansion</Data>
             </ParameterValue>
           </PropertyData>
-          <PropertyData property="pr9">
+          <PropertyData property="pr8">
             <Data format="string">-</Data>
             <Qualifier name="Definition">Constant Pressure</Qualifier>
             <Qualifier name="Field Variable Compatible">Temperature</Qualifier>
@@ -320,7 +320,7 @@
               <Qualifier name="Units">C</Qualifier>
             </ParameterValue>
           </PropertyData>
-          <PropertyData property="pr7">
+          <PropertyData property="pr9">
             <Data format="string">-</Data>
             <Qualifier name="Behavior">Isotropic</Qualifier>
             <Qualifier name="Derive from">Young's Modulus and Poisson's Ratio</Qualifier>
@@ -426,7 +426,7 @@
               <Data>Appearance</Data>
             </ParameterValue>
           </PropertyData>
-          <PropertyData property="pr7">
+          <PropertyData property="pr9">
             <Data format="string">-</Data>
             <Qualifier name="Behavior">Isotropic</Qualifier>
             <Qualifier name="Derive from">Shear Modulus and Poisson's Ratio</Qualifier>
@@ -515,7 +515,7 @@
               <Data>Appearance</Data>
             </ParameterValue>
           </PropertyData>
-          <PropertyData property="pr7">
+          <PropertyData property="pr9">
             <Data format="string">-</Data>
             <Qualifier name="Behavior">Isotropic</Qualifier>
             <Qualifier name="Derive from">Shear Modulus and Poisson's Ratio</Qualifier>
@@ -705,14 +705,14 @@
         <PropertyDetails id="pr6">
           <Name>Coefficient of Thermal Expansion</Name>
         </PropertyDetails>
-        <PropertyDetails id="pr8">
+        <PropertyDetails id="pr7">
           <Name>Zero-Thermal-Strain Reference Temperature</Name>
         </PropertyDetails>
-        <PropertyDetails id="pr7">
-          <Name>Elasticity</Name>
+        <PropertyDetails id="pr8">
+          <Name>Specific Heat</Name>
         </PropertyDetails>
         <PropertyDetails id="pr9">
-          <Name>Specific Heat</Name>
+          <Name>Elasticity</Name>
         </PropertyDetails>
         <PropertyDetails id="pr10">
           <Name>Thermal Conductivity</Name>

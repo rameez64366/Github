@@ -1,0 +1,30 @@
+# encoding: utf-8
+# 2022 R2
+SetScriptVersion(Version="22.2.192")
+designPoint1 = Parameters.CreateDesignPoint()
+parameter1 = Parameters.GetParameter(Name="P1")
+designPoint1.SetParameterExpression(
+    Parameter=parameter1,
+    Expression="20 [mm]")
+parameter2 = Parameters.GetParameter(Name="P2")
+designPoint1.SetParameterExpression(
+    Parameter=parameter2,
+    Expression="60 [mm]")
+parameter3 = Parameters.GetParameter(Name="P6")
+designPoint1.SetParameterExpression(
+    Parameter=parameter3,
+    Expression="10 [mm]")
+parameter4 = Parameters.GetParameter(Name="P16")
+designPoint1.SetParameterExpression(
+    Parameter=parameter4,
+    Expression="20 [mm]")
+parameter5 = Parameters.GetParameter(Name="P17")
+designPoint1.SetParameterExpression(
+    Parameter=parameter5,
+    Expression="60 [mm]")
+parameter6 = Parameters.GetParameter(Name="P21")
+designPoint1.SetParameterExpression(
+    Parameter=parameter6,
+    Expression="10 [mm]")
+backgroundSession1 = UpdateAllDesignPoints(DesignPoints=[designPoint1])
+Save(Overwrite=True)
